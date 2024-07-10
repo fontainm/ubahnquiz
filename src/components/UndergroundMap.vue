@@ -2,7 +2,7 @@
   <svg
     width="100%"
     height="100%"
-    viewBox="0 0 3508 2481"
+    viewBox="0 0 2300 1875"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -34,7 +34,7 @@
         :d="line.d"
         fill="none"
         :stroke="line.color"
-        stroke-width="20"
+        stroke-width="40"
       />
     </g>
 
@@ -44,9 +44,11 @@
         :key="station.name"
         :cx="station.cx"
         :cy="station.cy"
-        r="15"
+        r="22"
         stroke="#000"
-        stroke-width="5"
+        stroke-width="2"
+        @mouseover="$emit('overStation', station)"
+        @mouseleave="$emit('leaveStation')"
       />
     </g>
   </svg>
