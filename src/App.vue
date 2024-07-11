@@ -47,7 +47,8 @@ export default {
   data() {
     return {
       hoveredStation: null,
-      mousePosition: { x: 0, y: 0 }
+      mousePosition: { x: 0, y: 0 },
+      tries: 0
     }
   },
 
@@ -75,10 +76,12 @@ export default {
     },
 
     handleClickStation(station) {
-      if (station.name == this.stationStore.question.name) {
+      if (station.id == this.stationStore.question.id) {
+        this.tries = 0
         this.stationStore.setSolved(station)
         console.log('YES!')
       } else {
+        this.tries++
         console.log('NO!')
       }
     }
