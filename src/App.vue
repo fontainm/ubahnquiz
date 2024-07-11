@@ -1,7 +1,7 @@
 <script setup>
 import UndergroundMap from '@/components/UndergroundMap.vue'
 import StationName from '@/components/StationName.vue'
-import stations from './data/stations.json'
+import stations from '@/data/stations.json'
 </script>
 
 <template>
