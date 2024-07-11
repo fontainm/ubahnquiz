@@ -20,7 +20,7 @@ import stations from './data/stations.json'
         <UndergroundMap
           :stations="stationStore.allStations"
           @overStation="setHoveredStation"
-          @leaveStation="setHoveredStation(null)"
+          @leaveStation="hoveredStation = null"
           @clickStation="handleClickStation"
         />
       </div>
@@ -62,6 +62,9 @@ export default {
 
   methods: {
     setHoveredStation(station, event) {
+      if (!station.solved) {
+        return
+      }
       this.hoveredStation = station
       if (event) {
         this.mousePosition = {

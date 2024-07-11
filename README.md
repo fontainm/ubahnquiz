@@ -33,3 +33,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+# TODO
+
+- ID for all stations
+- timer
+- 3 tries & color coding
