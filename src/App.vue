@@ -79,10 +79,11 @@ export default {
       if (station.id == this.stationStore.question.id) {
         this.tries = 0
         this.stationStore.setSolved(station)
-        console.log('YES!')
       } else {
         this.tries++
-        console.log('NO!')
+        if (this.tries >= 3) {
+          this.stationStore.setHint()
+        }
       }
     }
   }

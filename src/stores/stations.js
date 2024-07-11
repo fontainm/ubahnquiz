@@ -35,12 +35,20 @@ export const useStationStore = defineStore('question', {
       const solvedStation = this.stations.findIndex((s) => s.id == station.id)
       let newStations = this.stations
       newStations[solvedStation].solved = true
+      newStations[solvedStation].hint = false
       this.setStations(newStations)
       if (this.unsolvedStations.length > 0) {
         this.newQuestion()
       } else {
         console.log('Game Over!')
       }
+    },
+
+    setHint() {
+      const questionedStation = this.stations.findIndex((s) => s.id == this.question.id)
+      let newStations = this.stations
+      newStations[questionedStation].hint = true
+      this.setStations(newStations)
     },
 
     newQuestion() {
