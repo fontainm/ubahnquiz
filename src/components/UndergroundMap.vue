@@ -47,7 +47,7 @@
         r="22"
         stroke="#000"
         stroke-width="2"
-        @mouseover="$emit('overStation', station)"
+        @mouseover="$emit('overStation', station, $event)"
         @mouseleave="$emit('leaveStation')"
       />
     </g>

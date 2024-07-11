@@ -4,47 +4,95 @@ import UndergroundMap from '@/components/UndergroundMap.vue'
 
 <template>
   <main>
-    <div v-if="hoveredStation" class="info">
-      <div class="lines">
-        <img v-for="line in hoveredStation.lines" :key="line" :src="`${line}.svg`" class="line" />
+    <div class="header">
+      <div class="timer">00:00</div>
+      <div class="question">
+        <span>Wo ist </span>
+        <StationName v-if="questionedStation" :station="questionedStation" />?
       </div>
-      <span>
-        {{ hoveredStation.name }}
-      </span>
+      <div class="progress">0%</div>
     </div>
+    <Transition>
+      <div
+        v-show="hoveredStation"
+        class="info"
+        :style="`left: ${mousePosition.x}px; top: ${mousePosition.y}px`"
+      >
+        <StationName :station="hoveredStation" />
+      </div>
+    </Transition>
     <UndergroundMap @overStation="setHoveredStation" @leaveStation="setHoveredStation(null)" />
   </main>
 </template>
 
 <script>
+import stations from './data/stations.json'
+import StationName from './components/StationName.vue'
+
 export default {
+  components: {
+    StationName
+  },
+
   data() {
     return {
-      hoveredStation: null
+      questionedStation: null,
+      hoveredStation: null,
+      mousePosition: { x: 0, y: 0 },
+      stations
     }
   },
+
+  mounted() {
+    this.questionedStation = stations[Math.floor(Math.random() * stations.length)]
+  },
+
   methods: {
-    setHoveredStation(station) {
+    setHoveredStation(station, event) {
       this.hoveredStation = station
+      if (event) {
+        this.mousePosition = {
+          x: event.pageX,
+          y: event.pageY
+        }
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.lines {
-  margin-right: 0.5rem;
-  line-height: 0;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #00000033;
+  padding: 1rem;
+  font-size: 2rem;
 }
 
-.line {
-  width: 50px;
+.question {
+  display: flex;
+  align-items: center;
+  max-height: 2rem;
 }
 
 .info {
+  pointer-events: none;
   position: absolute;
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
+  padding-left: 1rem;
   align-items: center;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
