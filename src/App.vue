@@ -1,5 +1,7 @@
 <script setup>
 import UndergroundMap from '@/components/UndergroundMap.vue'
+import StationName from '@/components/StationName.vue'
+import stations from './data/stations.json'
 </script>
 
 <template>
@@ -9,13 +11,18 @@ import UndergroundMap from '@/components/UndergroundMap.vue'
         <div class="timer">00:00</div>
         <div class="question">
           <span>Wo ist </span>
-          <StationName v-if="questionedStation" :station="questionedStation" />?
+          <StationName v-if="stationStore.question" :station="stationStore.question" />?
         </div>
-        <div class="progress">0%</div>
+        <div class="progress">{{ stationStore.progress }}</div>
       </div>
 
       <div class="map">
-        <UndergroundMap @overStation="setHoveredStation" @leaveStation="setHoveredStation(null)" />
+        <UndergroundMap
+          :stations="stationStore.allStations"
+          @overStation="setHoveredStation"
+          @leaveStation="setHoveredStation(null)"
+          @clickStation="handleClickStation"
+        />
       </div>
     </div>
 
@@ -30,8 +37,7 @@ import UndergroundMap from '@/components/UndergroundMap.vue'
 </template>
 
 <script>
-import stations from './data/stations.json'
-import StationName from './components/StationName.vue'
+import { useStationStore } from '@/stores/stations'
 
 export default {
   components: {
@@ -40,15 +46,18 @@ export default {
 
   data() {
     return {
-      questionedStation: null,
       hoveredStation: null,
-      mousePosition: { x: 0, y: 0 },
-      stations
+      mousePosition: { x: 0, y: 0 }
     }
   },
 
   mounted() {
-    this.questionedStation = stations[Math.floor(Math.random() * stations.length)]
+    this.stationStore.setStations(stations)
+    this.stationStore.newQuestion()
+  },
+
+  computed: {
+    stationStore: () => useStationStore()
   },
 
   methods: {
@@ -59,6 +68,15 @@ export default {
           x: event.pageX,
           y: event.pageY
         }
+      }
+    },
+
+    handleClickStation(station) {
+      if (station.name == this.stationStore.question.name) {
+        this.stationStore.setSolved(station)
+        console.log('YES!')
+      } else {
+        console.log('NO!')
       }
     }
   }

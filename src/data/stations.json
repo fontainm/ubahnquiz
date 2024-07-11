@@ -48,7 +48,6 @@
   { "name": "Schweglerstraße", "cx": "463.361", "cy": "893.967", "lines": ["U3"] },
   { "name": "Zieglergasse", "cx": "606.527", "cy": "951.105", "lines": ["U3"] },
   { "name": "Neubaugasse", "cx": "681.416", "cy": "951.105", "lines": ["U3"] },
-  { "name": "Volkstheater", "cx": "761.374", "cy": "951.105", "lines": ["U3"] },
   { "name": "Herrengasse", "cx": "884.015", "cy": "951.105", "lines": ["U3"] },
   { "name": "Stephansplatz", "cx": "973.431", "cy": "951.105", "lines": ["U1", "U3"] },
   { "name": "Stubentor", "cx": "1080.2", "cy": "951.105", "lines": ["U3"] },

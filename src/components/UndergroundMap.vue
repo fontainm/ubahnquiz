@@ -45,11 +45,12 @@
           :key="station.name"
           :cx="station.cx"
           :cy="station.cy"
+          :class="{ solved: station.solved }"
           r="22"
-          stroke="#000"
           stroke-width="2"
           @mouseover="$emit('overStation', station, $event)"
           @mouseleave="$emit('leaveStation')"
+          @click="$emit('clickStation', station)"
         />
       </g>
     </g>
@@ -59,15 +60,19 @@
 <script>
 import waters from '../data/waters.json'
 import lines from '../data/lines.json'
-import stations from '../data/stations.json'
 import panzoom from 'panzoom'
 
 export default {
+  props: {
+    stations: {
+      required: true
+    }
+  },
+
   data() {
     return {
       waters,
-      lines,
-      stations
+      lines
     }
   },
 
@@ -88,6 +93,11 @@ circle {
   cursor: pointer;
   transition: all 0.3s ease;
   fill: white;
+  stroke: black;
+
+  &.solved {
+    fill: #50c878 !important;
+  }
 
   &:hover {
     fill: grey;
