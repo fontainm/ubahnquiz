@@ -16,40 +16,42 @@
       stroke-miterlimit: 1.5;
     "
   >
-    <g id="waters">
-      <path
-        v-for="water in waters"
-        :key="water.id"
-        :d="water.d"
-        :stroke-width="water.width"
-        stroke="#dbf2f3"
-        fill="none"
-      />
-    </g>
+    <g id="underground">
+      <g id="waters">
+        <path
+          v-for="water in waters"
+          :key="water.id"
+          :d="water.d"
+          :stroke-width="water.width"
+          stroke="#dbf2f3"
+          fill="none"
+        />
+      </g>
 
-    <g id="lines">
-      <path
-        v-for="line in lines"
-        :key="line.id"
-        :d="line.d"
-        fill="none"
-        :stroke="line.color"
-        stroke-width="40"
-      />
-    </g>
+      <g id="lines">
+        <path
+          v-for="line in lines"
+          :key="line.id"
+          :d="line.d"
+          fill="none"
+          :stroke="line.color"
+          stroke-width="40"
+        />
+      </g>
 
-    <g id="stations">
-      <circle
-        v-for="station in stations"
-        :key="station.name"
-        :cx="station.cx"
-        :cy="station.cy"
-        r="22"
-        stroke="#000"
-        stroke-width="2"
-        @mouseover="$emit('overStation', station, $event)"
-        @mouseleave="$emit('leaveStation')"
-      />
+      <g id="stations">
+        <circle
+          v-for="station in stations"
+          :key="station.name"
+          :cx="station.cx"
+          :cy="station.cy"
+          r="22"
+          stroke="#000"
+          stroke-width="2"
+          @mouseover="$emit('overStation', station, $event)"
+          @mouseleave="$emit('leaveStation')"
+        />
+      </g>
     </g>
   </svg>
 </template>
@@ -58,6 +60,7 @@
 import waters from '../data/waters.json'
 import lines from '../data/lines.json'
 import stations from '../data/stations.json'
+import panzoom from 'panzoom'
 
 export default {
   data() {
@@ -66,6 +69,16 @@ export default {
       lines,
       stations
     }
+  },
+
+  mounted() {
+    let element = document.getElementById('underground')
+    panzoom(element, {
+      minZoom: 0.2,
+      maxZoom: 2,
+      bounds: true,
+      boundsPadding: 0.5
+    })
   }
 }
 </script>
@@ -79,5 +92,9 @@ circle {
 
 circle:hover {
   fill: grey;
+}
+
+svg:focus {
+  outline: none;
 }
 </style>
