@@ -83,15 +83,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 circle {
   cursor: pointer;
   transition: all 0.3s ease;
   fill: white;
-}
 
-circle:hover {
-  fill: grey;
+  &:hover {
+    fill: grey;
+  }
 }
 
 svg:focus {

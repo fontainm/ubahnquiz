@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .page {
   height: 100vh;
   overflow: hidden;
@@ -81,16 +81,16 @@ export default {
   padding: 1rem;
   font-size: 2rem;
   background: white;
+
+  .question {
+    display: flex;
+    align-items: center;
+    max-height: 2rem;
+  }
 }
 
 .map {
   height: 100%;
-}
-
-.question {
-  display: flex;
-  align-items: center;
-  max-height: 2rem;
 }
 
 .info {
