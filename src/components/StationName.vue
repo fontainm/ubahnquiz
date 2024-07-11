@@ -19,20 +19,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .stationname {
   display: inline-flex;
   align-items: center;
   margin-left: 0.5rem;
-}
 
-.lines {
-  margin-right: 0.5rem;
-  height: 2rem;
-}
+  .lines {
+    margin-right: 0.5rem;
+    height: 2rem;
+  }
 
-.line {
-  height: inherit;
+  .line {
+    height: inherit;
+  }
 }
 
 @media screen and (max-width: 767px) {
