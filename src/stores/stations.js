@@ -31,10 +31,11 @@ export const useStationStore = defineStore('question', {
       this.stations = stations
     },
 
-    setSolved(station) {
+    setSolved(station, tries) {
       const solvedStation = this.stations.findIndex((s) => s.id == station.id)
       let newStations = this.stations
       newStations[solvedStation].solved = true
+      newStations[solvedStation].tries = tries
       newStations[solvedStation].hint = false
       this.setStations(newStations)
       if (this.unsolvedStations.length > 0) {

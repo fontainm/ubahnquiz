@@ -8,12 +8,17 @@ import stations from '@/data/stations.json'
   <main>
     <div class="page">
       <div class="header">
-        <div class="timer">00:00</div>
+        <div class="progress">{{ stationStore.progress }}</div>
         <div class="question">
           <span>Wo ist </span>
           <StationName v-if="stationStore.question" :station="stationStore.question" />?
         </div>
-        <div class="progress">{{ stationStore.progress }}</div>
+        <div class="score">
+          <span>
+            {{ score }}
+          </span>
+          <span class="points">Punkte</span>
+        </div>
       </div>
 
       <div class="map">
@@ -48,6 +53,7 @@ export default {
     return {
       hoveredStation: null,
       mousePosition: { x: 0, y: 0 },
+      score: 0,
       tries: 0
     }
   },
@@ -77,11 +83,14 @@ export default {
 
     handleClickStation(station) {
       if (station.id == this.stationStore.question.id) {
+        this.stationStore.setSolved(station, this.tries)
+        this.score += 3 - this.tries
         this.tries = 0
-        this.stationStore.setSolved(station)
       } else {
-        this.tries++
-        if (this.tries >= 3) {
+        if (this.tries < 3) {
+          this.tries++
+        }
+        if (this.tries === 3) {
           this.stationStore.setHint()
         }
       }
@@ -113,6 +122,13 @@ export default {
     max-height: 2rem;
     white-space: nowrap;
   }
+
+  .score {
+    .points {
+      font-size: 1rem;
+      margin-left: 0.5rem;
+    }
+  }
 }
 
 .map {
@@ -131,26 +147,31 @@ export default {
 @media screen and (max-width: 767px) {
   .header {
     font-size: 1.5rem;
-  }
 
-  .question {
-    width: 100%;
-    justify-content: center;
-  }
+    .question {
+      width: 100%;
+      justify-content: center;
+    }
 
-  .timer,
-  .progress {
-    font-size: 1rem;
-    position: absolute;
-    top: 5rem;
-  }
+    .score,
+    .progress {
+      font-size: 1.25rem;
+      position: absolute;
+      top: 5rem;
+    }
 
-  .timer {
-    left: 1rem;
-  }
+    .score {
+      right: 1rem;
 
-  .progress {
-    right: 1rem;
+      .points {
+        margin-left: 0.25rem;
+        font-size: 1.25rem;
+      }
+    }
+
+    .progress {
+      left: 1rem;
+    }
   }
 }
 </style>

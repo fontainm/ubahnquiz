@@ -45,7 +45,10 @@
           :key="station.id"
           :cx="station.cx"
           :cy="station.cy"
-          :class="{ solved: station.solved, hint: station.hint }"
+          :class="[
+            { solved: station.solved, hint: station.hint },
+            station.tries ? `tries-${station.tries}` : ''
+          ]"
           r="22"
           stroke-width="2"
           @mouseover="$emit('overStation', station, $event)"
@@ -100,6 +103,15 @@ circle {
     fill: #50c878 !important;
   }
 
+  &.tries-1 {
+  }
+
+  &.tries-2 {
+  }
+
+  &.tries-3 {
+  }
+
   &.hint {
     animation: 0.5s infinite alternate highlight;
   }
@@ -119,7 +131,7 @@ svg:focus {
   }
 
   to {
-    fill: #ff3232;
+    fill: black;
     r: 50;
   }
 }

@@ -37,5 +37,5 @@ npm run lint
 # TODO
 
 - disable double tap
+- game over
 - timer
-- 3 tries & color coding
