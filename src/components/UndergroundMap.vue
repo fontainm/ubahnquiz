@@ -42,7 +42,7 @@
       <g id="stations">
         <circle
           v-for="station in stations"
-          :key="station.name"
+          :key="station.id"
           :cx="station.cx"
           :cy="station.cy"
           :class="{ solved: station.solved }"
