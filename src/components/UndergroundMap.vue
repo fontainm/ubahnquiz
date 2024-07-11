@@ -51,6 +51,7 @@
           @mouseover="$emit('overStation', station, $event)"
           @mouseleave="$emit('leaveStation')"
           @click="$emit('clickStation', station)"
+          @touchend="$emit('clickStation', station)"
         />
       </g>
     </g>
