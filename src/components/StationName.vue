@@ -34,10 +34,4 @@ export default {
     height: inherit;
   }
 }
-
-@media screen and (max-width: 767px) {
-  .lines {
-    height: 1.5rem;
-  }
-}
 </style>

@@ -107,6 +107,7 @@ export default {
     display: flex;
     align-items: center;
     max-height: 2rem;
+    white-space: nowrap;
   }
 }
 
@@ -125,14 +126,27 @@ export default {
 
 @media screen and (max-width: 767px) {
   .header {
-    flex-direction: column;
-    flex-wrap: wrap;
-    font-size: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .question {
+    width: 100%;
+    justify-content: center;
   }
 
   .timer,
   .progress {
-    order: 1;
+    font-size: 1rem;
+    position: absolute;
+    top: 5rem;
+  }
+
+  .timer {
+    left: 1rem;
+  }
+
+  .progress {
+    right: 1rem;
   }
 }
 </style>

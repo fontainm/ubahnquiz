@@ -36,7 +36,6 @@ npm run lint
 
 # TODO
 
-- mobile header
 - disable double tap
 - ID for all stations
 - timer
