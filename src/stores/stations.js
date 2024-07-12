@@ -1,10 +1,16 @@
 import { defineStore } from 'pinia'
+import dayjs from 'dayjs'
 
 export const useStationStore = defineStore('question', {
   state: () => {
     return {
       question: null,
-      stations: []
+      stations: [],
+      timer: {
+        value: '00:00',
+        start: 0,
+        interval: null
+      }
     }
   },
 
@@ -31,6 +37,13 @@ export const useStationStore = defineStore('question', {
       this.stations = stations
     },
 
+    startTimer() {
+      this.timer.start = dayjs()
+      this.timer.interval = setInterval(() => {
+        this.timer.value = dayjs(dayjs() - this.timer.start).format('mm:ss')
+      }, 1000)
+    },
+
     setSolved(station, tries) {
       const solvedStation = this.stations.findIndex((s) => s.id == station.id)
       let newStations = this.stations
@@ -41,7 +54,7 @@ export const useStationStore = defineStore('question', {
       if (this.unsolvedStations.length > 0) {
         this.newQuestion()
       } else {
-        console.log('Game Over!')
+        this.endGame()
       }
     },
 
@@ -55,6 +68,11 @@ export const useStationStore = defineStore('question', {
     newQuestion() {
       this.question =
         this.unsolvedStations[Math.floor(Math.random() * this.unsolvedStations.length)]
+    },
+
+    endGame() {
+      console.log('Game Over!')
+      clearInterval(this.timer.interval)
     }
   }
 })

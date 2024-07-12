@@ -8,7 +8,7 @@ import stations from '@/data/stations.json'
   <main>
     <div class="page">
       <div class="header">
-        <div class="timer">{{ timer.value }}</div>
+        <div class="timer">{{ stationStore.timer.value }}</div>
 
         <div class="question">
           <span>Wo ist </span>
@@ -61,12 +61,7 @@ export default {
       hoveredStation: null,
       mousePosition: { x: 0, y: 0 },
       score: 0,
-      tries: 0,
-      timer: {
-        value: '00:00',
-        start: 0,
-        interval: null
-      }
+      tries: 0
     }
   },
 
@@ -94,8 +89,8 @@ export default {
     },
 
     handleClickStation(station) {
-      if (!this.timer.interval) {
-        this.startTimer()
+      if (!this.stationStore.timer.interval) {
+        this.stationStore.startTimer()
       }
       if (station.id == this.stationStore.question.id) {
         this.stationStore.setSolved(station, this.tries)
@@ -109,13 +104,6 @@ export default {
           this.stationStore.setHint()
         }
       }
-    },
-
-    startTimer() {
-      this.timer.start = dayjs()
-      this.timer.interval = setInterval(() => {
-        this.timer.value = dayjs(dayjs() - this.timer.start).format('mm:ss')
-      }, 1000)
     }
   }
 }

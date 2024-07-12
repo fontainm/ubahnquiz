@@ -41,4 +41,5 @@ npm run lint
 # TODO
 
 - game over
+- rename store
 - github link
