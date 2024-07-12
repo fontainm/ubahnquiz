@@ -1,6 +1,7 @@
 <script setup>
 import UndergroundMap from '@/components/UndergroundMap.vue'
 import StationName from '@/components/StationName.vue'
+import GameOverModal from '@/components/GameOverModal.vue'
 import stations from '@/data/stations.json'
 </script>
 
@@ -15,9 +16,11 @@ import stations from '@/data/stations.json'
           <StationName v-if="stationStore.question" :station="stationStore.question" />?
         </div>
 
+        <!-- <button @click="stationStore.endGame()">Finish</button> -->
+
         <div class="score">
           <span>
-            {{ score }}
+            {{ stationStore.score }}
           </span>
           <span class="points">Punkte</span>
         </div>
@@ -44,12 +47,13 @@ import stations from '@/data/stations.json'
     >
       <StationName :station="hoveredStation" />
     </div>
+
+    <GameOverModal />
   </main>
 </template>
 
 <script>
 import { useStationStore } from '@/stores/stations'
-import dayjs from 'dayjs'
 
 export default {
   components: {
@@ -60,7 +64,6 @@ export default {
     return {
       hoveredStation: null,
       mousePosition: { x: 0, y: 0 },
-      score: 0,
       tries: 0
     }
   },
@@ -94,7 +97,7 @@ export default {
       }
       if (station.id == this.stationStore.question.id) {
         this.stationStore.setSolved(station, this.tries)
-        this.score += 3 - this.tries
+        this.stationStore.addScore(3 - this.tries)
         this.tries = 0
       } else {
         if (this.tries < 3) {

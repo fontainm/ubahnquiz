@@ -6,11 +6,13 @@ export const useStationStore = defineStore('question', {
     return {
       question: null,
       stations: [],
+      score: 0,
       timer: {
         value: '00:00',
         start: 0,
         interval: null
-      }
+      },
+      gameOver: false
     }
   },
 
@@ -65,14 +67,34 @@ export const useStationStore = defineStore('question', {
       this.setStations(newStations)
     },
 
+    addScore(points) {
+      this.score += points
+    },
+
     newQuestion() {
       this.question =
         this.unsolvedStations[Math.floor(Math.random() * this.unsolvedStations.length)]
     },
 
     endGame() {
-      console.log('Game Over!')
+      this.gameOver = true
       clearInterval(this.timer.interval)
+    },
+
+    resetGame() {
+      this.gameOver = false
+      this.timer = {
+        value: '00:00',
+        start: 0,
+        interval: null
+      }
+      this.stations.map((s) => {
+        s.solved = false
+        s.tries = 0
+        s.hint = false
+      })
+      this.newQuestion()
+      this.score = 0
     }
   }
 })

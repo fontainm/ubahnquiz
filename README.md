@@ -40,6 +40,7 @@ npm run lint
 
 # TODO
 
-- game over
+- share
+- score animation
 - rename store
 - github link
