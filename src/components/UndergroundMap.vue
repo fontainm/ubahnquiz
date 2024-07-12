@@ -46,6 +46,7 @@
           :cx="station.cx"
           :cy="station.cy"
           :class="[
+            'station',
             { solved: station.solved, hint: station.hint },
             station.tries ? `tries-${station.tries}` : ''
           ]"
@@ -56,6 +57,14 @@
           @click="$emit('clickStation', station)"
           @touchend="$emit('clickStation', station)"
         />
+
+        <circle
+          v-if="stationStore.question?.hint"
+          class="hint-station"
+          r="22"
+          :cx="stationStore.question.cx"
+          :cy="stationStore.question.cy"
+        />
       </g>
     </g>
   </svg>
@@ -65,6 +74,7 @@
 import waters from '../data/waters.json'
 import lines from '../data/lines.json'
 import panzoom from 'panzoom'
+import { useStationStore } from '@/stores/stations'
 
 export default {
   props: {
@@ -80,6 +90,10 @@ export default {
     }
   },
 
+  computed: {
+    stationStore: () => useStationStore()
+  },
+
   mounted() {
     let element = document.getElementById('underground')
     panzoom(element, {
@@ -93,46 +107,69 @@ export default {
 </script>
 
 <style scoped lang="scss">
-circle {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  fill: white;
-  stroke: black;
-
-  &.solved {
-    fill: #50c878 !important;
-  }
-
-  &.tries-1 {
-  }
-
-  &.tries-2 {
-  }
-
-  &.tries-3 {
-  }
-
-  &.hint {
-    animation: 0.5s infinite alternate highlight;
-  }
-
-  &:hover {
-    fill: grey;
-  }
-}
-
 svg:focus {
   outline: none;
 }
 
-@keyframes highlight {
+circle {
+  transform-box: fill-box;
+  transform-origin: center center;
+
+  &.station {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    fill: white;
+    stroke: black;
+
+    &.solved {
+      fill: #50c878 !important;
+    }
+
+    &.tries-1 {
+    }
+
+    &.tries-2 {
+    }
+
+    &.tries-3 {
+    }
+
+    &.hint {
+      animation: 0.5s infinite alternate hint-animation-1;
+    }
+
+    &:hover {
+      fill: grey;
+    }
+  }
+
+  &.hint-station {
+    pointer-events: none;
+    fill: none;
+    stroke: black;
+    animation: 2s infinite ease hint-animation-2;
+  }
+}
+
+@keyframes hint-animation-1 {
   from {
     fill: white;
   }
 
   to {
     fill: black;
-    r: 50;
+  }
+}
+
+@keyframes hint-animation-2 {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(40);
+    opacity: 0;
   }
 }
 </style>

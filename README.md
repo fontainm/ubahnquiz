@@ -36,7 +36,6 @@ npm run lint
 
 # TODO
 
-- hint animation
 - disable double tap
 - game over
 - timer
