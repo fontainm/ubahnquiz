@@ -41,5 +41,4 @@ npm run lint
 # TODO
 
 - game over
-- timer
 - github link
