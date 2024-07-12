@@ -9,10 +9,13 @@
           <div>Punkte: {{ stationStore.score }}</div>
         </div>
         <div class="buttons">
-          <button @click="share" disabled>Teilen</button>
+          <button @click="share">Teilen</button>
           <button @click="stationStore.resetGame()">Nochmal</button>
         </div>
       </div>
+      <transition name="fade">
+        <div v-if="showMessage" class="message">Erfolgreich kopiert!</div>
+      </transition>
     </div>
   </transition>
 </template>
@@ -21,6 +24,12 @@
 import { useStationStore } from '@/stores/stations'
 
 export default {
+  data() {
+    return {
+      showMessage: false
+    }
+  },
+
   computed: {
     stationStore: () => useStationStore()
   },
@@ -28,8 +37,13 @@ export default {
   methods: {
     async share() {
       try {
-        await navigator.clipboard.writeText('Hallo')
-        console.log('OK')
+        await navigator.clipboard.writeText(
+          `Meine Punkte: ${this.stationStore.score}\nMeine Zeit: ${this.stationStore.timer.value}\nSchaffst du das auch?\nhttps://ubahnquiz.at`
+        )
+        this.showMessage = true
+        setTimeout(() => {
+          this.showMessage = false
+        }, 2000)
       } catch ($) {
         console.log('error')
       }
@@ -81,6 +95,16 @@ export default {
       display: flex;
       justify-content: space-around;
     }
+  }
+
+  .message {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2rem;
+    background: #333;
+    color: white;
+    padding: 1rem;
   }
 
   button {

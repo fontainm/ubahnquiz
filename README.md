@@ -40,7 +40,7 @@ npm run lint
 
 # TODO
 
-- share
 - score animation
 - rename store
+- close modal without reset
 - github link

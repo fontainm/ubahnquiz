@@ -16,8 +16,6 @@ import stations from '@/data/stations.json'
           <StationName v-if="stationStore.question" :station="stationStore.question" />?
         </div>
 
-        <!-- <button @click="stationStore.endGame()">Finish</button> -->
-
         <div class="score">
           <span>
             {{ stationStore.score }}
