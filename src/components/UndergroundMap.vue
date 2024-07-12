@@ -153,7 +153,8 @@ circle {
     }
 
     &:hover {
-      fill: grey;
+      fill: #eee;
+      transform: scale(2);
     }
   }
 
