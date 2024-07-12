@@ -8,17 +8,23 @@ import stations from '@/data/stations.json'
   <main>
     <div class="page">
       <div class="header">
-        <div class="progress">{{ stationStore.progress }}</div>
+        <div class="timer">00:00</div>
+
         <div class="question">
           <span>Wo ist </span>
           <StationName v-if="stationStore.question" :station="stationStore.question" />?
         </div>
+
         <div class="score">
           <span>
             {{ score }}
           </span>
           <span class="points">Punkte</span>
         </div>
+      </div>
+
+      <div class="progress">
+        <div :style="`width: ${stationStore.progress}%`"></div>
       </div>
 
       <div class="map">
@@ -111,7 +117,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #00000033;
   padding: 1rem;
   font-size: 2rem;
   background: white;
@@ -128,6 +133,17 @@ export default {
       font-size: 1rem;
       margin-left: 0.5rem;
     }
+  }
+}
+
+.progress {
+  background: #eee;
+  height: 10px;
+
+  & > div {
+    transition: width 0.3s ease;
+    height: 100%;
+    background: #50c878;
   }
 }
 
@@ -154,7 +170,7 @@ export default {
     }
 
     .score,
-    .progress {
+    .timer {
       font-size: 1.25rem;
       position: absolute;
       top: 5rem;
@@ -169,7 +185,7 @@ export default {
       }
     }
 
-    .progress {
+    .timer {
       left: 1rem;
     }
   }

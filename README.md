@@ -42,3 +42,4 @@ npm run lint
 
 - game over
 - timer
+- github link

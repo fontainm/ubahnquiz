@@ -22,7 +22,7 @@ export const useStationStore = defineStore('question', {
     },
 
     progress() {
-      return ((this.solvedStations.length / this.allStations.length) * 100).toFixed(0) + '%'
+      return ((this.solvedStations.length / this.allStations.length) * 100).toFixed(1)
     }
   },
 
