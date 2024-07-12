@@ -5,6 +5,7 @@ export const useStationStore = defineStore('question', {
   state: () => {
     return {
       question: null,
+      lastQuestion: null,
       stations: [],
       score: 0,
       timer: {
@@ -50,14 +51,29 @@ export const useStationStore = defineStore('question', {
       const solvedStation = this.stations.findIndex((s) => s.id == station.id)
       let newStations = this.stations
       newStations[solvedStation].solved = true
+      newStations[solvedStation].correct = true
       newStations[solvedStation].tries = tries
       newStations[solvedStation].hint = false
       this.setStations(newStations)
+      setTimeout(() => {
+        newStations[solvedStation].correct = false
+      }, 500)
       if (this.unsolvedStations.length > 0) {
         this.newQuestion()
       } else {
         this.endGame()
       }
+    },
+
+    setWrong(station) {
+      const wrongStation = this.stations.findIndex((s) => s.id == station.id)
+      let newStations = this.stations
+      newStations[wrongStation].wrong = true
+      this.setStations(newStations)
+      setTimeout(() => {
+        newStations[wrongStation].wrong = false
+        this.setStations(newStations)
+      }, 500)
     },
 
     setHint() {
@@ -72,6 +88,7 @@ export const useStationStore = defineStore('question', {
     },
 
     newQuestion() {
+      this.lastQuestion = this.question
       this.question =
         this.unsolvedStations[Math.floor(Math.random() * this.unsolvedStations.length)]
     },

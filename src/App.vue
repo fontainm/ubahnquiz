@@ -98,6 +98,7 @@ export default {
         this.stationStore.addScore(3 - this.tries)
         this.tries = 0
       } else {
+        this.stationStore.setWrong(station)
         if (this.tries < 3) {
           this.tries++
         }

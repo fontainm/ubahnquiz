@@ -47,7 +47,12 @@
           :cy="station.cy"
           :class="[
             'station',
-            { solved: station.solved, hint: station.hint },
+            {
+              solved: station.solved,
+              hint: station.hint,
+              correct: station.correct,
+              wrong: station.wrong
+            },
             station.tries ? `tries-${station.tries}` : ''
           ]"
           r="22"
@@ -118,7 +123,7 @@ circle {
 
   &.station {
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     fill: white;
     stroke: black;
 
@@ -137,6 +142,14 @@ circle {
 
     &.hint {
       animation: 0.5s infinite alternate hint-animation-1;
+    }
+
+    &.correct {
+      transform: scale(2);
+    }
+
+    &.wrong {
+      fill: #ff1313;
     }
 
     &:hover {
