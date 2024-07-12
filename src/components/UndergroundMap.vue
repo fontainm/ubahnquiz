@@ -149,7 +149,7 @@ circle {
     }
 
     &.wrong {
-      fill: #ff1313;
+      fill: #ff1313 !important;
     }
 
     &:hover {
