@@ -34,8 +34,11 @@ npm run build
 npm run lint
 ```
 
+# Tools
+
+- https://github.com/anvaka/panzoom
+
 # TODO
 
-- disable double tap
 - game over
 - timer

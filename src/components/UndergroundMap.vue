@@ -100,7 +100,8 @@ export default {
       minZoom: 0.2,
       maxZoom: 2,
       bounds: true,
-      boundsPadding: 0.5
+      boundsPadding: 0.5,
+      zoomDoubleClickSpeed: 1
     })
   }
 }
