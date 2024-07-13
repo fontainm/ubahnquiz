@@ -59,7 +59,7 @@
           stroke-width="2"
           @mouseover="$emit('overStation', station, $event)"
           @mouseleave="$emit('leaveStation')"
-          @click="$emit('clickStation', station)"
+          @click="station.solved ? null : $emit('clickStation', station)"
           @touchend="$emit('clickStation', station)"
         />
 
