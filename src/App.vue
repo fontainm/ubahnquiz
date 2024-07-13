@@ -205,6 +205,11 @@ export default {
   .settings {
     display: flex;
     margin-left: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #999;
+    }
 
     i {
       cursor: pointer;
