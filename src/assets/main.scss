@@ -1,13 +1,31 @@
+:root {
+  --background-color: #fff;
+  --text-color: #333;
+  --button-color: #eee;
+  --station-color: #fff;
+  --water-color: #dbf2f3;
+}
+
+.dark {
+  --background-color: #1a1a1a;
+  --text-color: #fff;
+  --button-color: #333;
+  --station-color: #eee;
+  --water-color: #07283e;
+}
+
 body {
   margin: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
+  background: var(--background-color);
+  color: var(--text-color);
 }
 
 button {
-  background-color: #eee;
+  background-color: var(--button-color);
   border-width: 0;
-  color: #333;
+  color: var(--text-color);
   cursor: pointer;
   display: inline-flex;
   font-size: 1rem;

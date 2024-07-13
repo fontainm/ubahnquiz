@@ -21,9 +21,9 @@
         <path
           v-for="water in waters"
           :key="water.id"
+          class="water"
           :d="water.d"
           :stroke-width="water.width"
-          stroke="#dbf2f3"
           fill="none"
         />
       </g>
@@ -33,6 +33,7 @@
           v-for="line in lines"
           :key="line.id"
           :d="line.d"
+          class="line"
           fill="none"
           :stroke="line.color"
           stroke-width="40"
@@ -124,7 +125,7 @@ circle {
   &.station {
     cursor: pointer;
     transition: all 0.25s ease;
-    fill: white;
+    fill: var(--station-color);
     stroke: black;
 
     &.solved {
@@ -149,7 +150,7 @@ circle {
     }
 
     &.wrong {
-      fill: #ff1313 !important;
+      fill: #ff4545 !important;
     }
 
     &:hover {
@@ -161,18 +162,28 @@ circle {
   &.hint-station {
     pointer-events: none;
     fill: none;
-    stroke: black;
+    stroke: var(--text-color);
     animation: 2s infinite ease hint-animation-2;
   }
 }
 
+path {
+  &.water {
+    stroke: var(--water-color);
+  }
+}
+
+.dark path.line {
+  filter: brightness(0.75);
+}
+
 @keyframes hint-animation-1 {
   from {
-    fill: white;
+    fill: var(--background-color);
   }
 
   to {
-    fill: black;
+    fill: var(--text-color);
   }
 }
 

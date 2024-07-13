@@ -1,14 +1,18 @@
 <script setup>
 import GameModal from './GameModal.vue'
+import { useDark, useToggle } from '@vueuse/core'
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
   <GameModal :showModal="showModal" @close="$emit('close')">
     <h2>Settings</h2>
     <div class="buttons">
-      <button disabled>
-        <i class="light-icon-moon"></i>
-        Dark Mode
+      <button @click="toggleDark()">
+        <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
+        {{ isDark ? 'Light Mode' : 'Dark Mode' }}
       </button>
       <button @click="handleClickReset">
         <i class="light-icon-arrow-back"></i>
@@ -36,6 +40,11 @@ export default {
   },
 
   methods: {
+    handleClickTheme() {
+      this.toggleDark()
+      this.closeModal()
+    },
+
     handleClickReset() {
       this.mainStore.resetGame()
       this.closeModal()

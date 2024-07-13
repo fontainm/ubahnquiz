@@ -158,7 +158,7 @@ export default {
   align-items: center;
   padding: 1rem;
   font-size: 2rem;
-  background: white;
+  background: var(--background-color);
 
   .question {
     display: flex;
@@ -218,7 +218,7 @@ export default {
 }
 
 .progress {
-  background: #eee;
+  background: var(--button-color);
   height: 10px;
 
   & > div {

@@ -41,10 +41,10 @@ export default {
 
   .content {
     position: relative;
-    background: white;
+    background: var(--background-color);
     width: 300px;
     padding: 1rem;
-    border: 1px solid #eee;
+    border: 1px solid var(--button-color);
     text-align: center;
 
     h2 {
@@ -72,14 +72,14 @@ export default {
 
   button {
     width: 100%;
-    margin: 0.2rem;
+    margin: 0.3rem 0;
 
     &.close {
       position: absolute;
       width: auto;
       right: 0;
       top: 0;
-      background: white;
+      background: transparent;
       font-size: 1.5rem;
     }
   }

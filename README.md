@@ -41,5 +41,4 @@ npm run lint
 
 # TODO
 
-- dark mode
 - local storage

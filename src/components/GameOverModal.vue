@@ -70,12 +70,6 @@ export default {
   }
 }
 
-.stats,
-.buttons {
-  display: flex;
-  justify-content: space-around;
-}
-
 .message {
   position: absolute;
   left: 50%;

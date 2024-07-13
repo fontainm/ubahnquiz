@@ -11,6 +11,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vueuse/core": "^10.11.0",
     "dayjs": "^1.11.11",
     "light-icons": "^1.0.12",
     "panzoom": "^9.4.3",
