@@ -40,7 +40,6 @@ npm run lint
 
 # TODO
 
-- score animation
 - dark mode
 - local storage
 - close modal without reset

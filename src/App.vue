@@ -20,7 +20,10 @@ import stations from '@/data/stations.json'
           <span>
             {{ mainStore.score }}
           </span>
-          <span class="points">Punkte</span>
+          <span class="score-text">Punkte</span>
+          <span class="score-points" :class="{ show: pointAnimation }" :style="``"
+            >+{{ points }}</span
+          >
         </div>
       </div>
 
@@ -62,6 +65,8 @@ export default {
     return {
       hoveredStation: null,
       mousePosition: { x: 0, y: 0 },
+      points: 0,
+      pointAnimation: false,
       tries: 0
     }
   },
@@ -95,7 +100,14 @@ export default {
       }
       if (station.id == this.mainStore.question.id) {
         this.mainStore.setSolved(station, this.tries)
-        this.mainStore.addScore(3 - this.tries)
+        this.points = 3 - this.tries
+        if (this.points > 0) {
+          this.mainStore.addScore(this.points)
+          this.pointAnimation = true
+          setTimeout(() => {
+            this.pointAnimation = false
+          }, 2000)
+        }
         this.tries = 0
       } else {
         this.mainStore.setWrong(station)
@@ -140,11 +152,25 @@ export default {
   }
 
   .score {
+    position: relative;
     text-align: right;
 
-    .points {
+    .score-text {
       font-size: 1rem;
       margin-left: 0.5rem;
+    }
+
+    .score-points {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #50c878;
+      opacity: 0;
+
+      &.show {
+        animation: 2s normal ease point-animation;
+      }
     }
   }
 }
@@ -192,15 +218,31 @@ export default {
     .score {
       right: 1rem;
 
-      .points {
+      .score-text {
         margin-left: 0.25rem;
         font-size: 1.25rem;
+      }
+
+      .score-points {
+        left: 5px;
       }
     }
 
     .timer {
       left: 1rem;
     }
+  }
+}
+
+@keyframes point-animation {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+
+  to {
+    opacity: 0;
+    top: -50px;
   }
 }
 </style>
