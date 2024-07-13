@@ -64,11 +64,11 @@
         />
 
         <circle
-          v-if="stationStore.question?.hint"
+          v-if="mainStore.question?.hint"
           class="hint-station"
           r="22"
-          :cx="stationStore.question.cx"
-          :cy="stationStore.question.cy"
+          :cx="mainStore.question.cx"
+          :cy="mainStore.question.cy"
         />
       </g>
     </g>
@@ -79,7 +79,7 @@
 import waters from '../data/waters.json'
 import lines from '../data/lines.json'
 import panzoom from 'panzoom'
-import { useStationStore } from '@/stores/stations'
+import { useMainStore } from '@/stores/main'
 
 export default {
   props: {
@@ -96,7 +96,7 @@ export default {
   },
 
   computed: {
-    stationStore: () => useStationStore()
+    mainStore: () => useMainStore()
   },
 
   mounted() {

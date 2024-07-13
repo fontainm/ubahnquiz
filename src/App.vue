@@ -9,28 +9,28 @@ import stations from '@/data/stations.json'
   <main>
     <div class="page">
       <div class="header">
-        <div class="timer">{{ stationStore.timer.value }}</div>
+        <div class="timer">{{ mainStore.timer.value }}</div>
 
         <div class="question">
           <span>Wo ist </span>
-          <StationName v-if="stationStore.question" :station="stationStore.question" />?
+          <StationName v-if="mainStore.question" :station="mainStore.question" />?
         </div>
 
         <div class="score">
           <span>
-            {{ stationStore.score }}
+            {{ mainStore.score }}
           </span>
           <span class="points">Punkte</span>
         </div>
       </div>
 
       <div class="progress">
-        <div :style="`width: ${stationStore.progress}%`"></div>
+        <div :style="`width: ${mainStore.progress}%`"></div>
       </div>
 
       <div class="map">
         <UndergroundMap
-          :stations="stationStore.allStations"
+          :stations="mainStore.allStations"
           @overStation="setHoveredStation"
           @leaveStation="hoveredStation = null"
           @clickStation="handleClickStation"
@@ -51,7 +51,7 @@ import stations from '@/data/stations.json'
 </template>
 
 <script>
-import { useStationStore } from '@/stores/stations'
+import { useMainStore } from '@/stores/main'
 
 export default {
   components: {
@@ -67,12 +67,12 @@ export default {
   },
 
   mounted() {
-    this.stationStore.setStations(stations)
-    this.stationStore.newQuestion()
+    this.mainStore.setStations(stations)
+    this.mainStore.newQuestion()
   },
 
   computed: {
-    stationStore: () => useStationStore()
+    mainStore: () => useMainStore()
   },
 
   methods: {
@@ -90,20 +90,20 @@ export default {
     },
 
     handleClickStation(station) {
-      if (!this.stationStore.timer.interval) {
-        this.stationStore.startTimer()
+      if (!this.mainStore.timer.interval) {
+        this.mainStore.startTimer()
       }
-      if (station.id == this.stationStore.question.id) {
-        this.stationStore.setSolved(station, this.tries)
-        this.stationStore.addScore(3 - this.tries)
+      if (station.id == this.mainStore.question.id) {
+        this.mainStore.setSolved(station, this.tries)
+        this.mainStore.addScore(3 - this.tries)
         this.tries = 0
       } else {
-        this.stationStore.setWrong(station)
+        this.mainStore.setWrong(station)
         if (this.tries < 3) {
           this.tries++
         }
         if (this.tries === 3) {
-          this.stationStore.setHint()
+          this.mainStore.setHint()
         }
       }
     }

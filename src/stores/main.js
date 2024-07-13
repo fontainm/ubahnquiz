@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import dayjs from 'dayjs'
 
-export const useStationStore = defineStore('question', {
+export const useMainStore = defineStore('main', {
   state: () => {
     return {
       question: null,

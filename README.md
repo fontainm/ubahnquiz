@@ -41,6 +41,7 @@ npm run lint
 # TODO
 
 - score animation
-- rename store
+- dark mode
+- local storage
 - close modal without reset
 - github link

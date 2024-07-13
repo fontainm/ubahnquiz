@@ -1,16 +1,16 @@
 <template>
   <transition name="fade">
-    <div v-if="stationStore.gameOver" class="gameover" role="dialog">
+    <div v-if="mainStore.gameOver" class="gameover" role="dialog">
       <div class="content">
-        <button class="close" @click="stationStore.resetGame()">×</button>
+        <button class="close" @click="mainStore.resetGame()">×</button>
         <h2>Geschafft!</h2>
         <div class="stats">
-          <div>Zeit: {{ stationStore.timer.value }}</div>
-          <div>Punkte: {{ stationStore.score }}</div>
+          <div>Zeit: {{ mainStore.timer.value }}</div>
+          <div>Punkte: {{ mainStore.score }}</div>
         </div>
         <div class="buttons">
           <button @click="share">Teilen</button>
-          <button @click="stationStore.resetGame()">Nochmal</button>
+          <button @click="mainStore.resetGame()">Nochmal</button>
         </div>
       </div>
       <transition name="fade">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { useStationStore } from '@/stores/stations'
+import { useMainStore } from '@/stores/main'
 
 export default {
   data() {
@@ -31,14 +31,14 @@ export default {
   },
 
   computed: {
-    stationStore: () => useStationStore()
+    mainStore: () => useMainStore()
   },
 
   methods: {
     async share() {
       try {
         await navigator.clipboard.writeText(
-          `Meine Punkte: ${this.stationStore.score}\nMeine Zeit: ${this.stationStore.timer.value}\nSchaffst du das auch?\nhttps://ubahnquiz.at`
+          `Meine Punkte: ${this.mainStore.score}\nMeine Zeit: ${this.mainStore.timer.value}\nSchaffst du das auch?\nhttps://ubahnquiz.at`
         )
         this.showMessage = true
         setTimeout(() => {
