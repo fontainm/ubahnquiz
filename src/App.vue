@@ -8,27 +8,29 @@ import stations from '@/data/stations.json'
 <template>
   <main>
     <div class="page">
-      <div class="header">
-        <div class="timer">{{ mainStore.timer.value }}</div>
+      <div class="wrapper">
+        <div class="header">
+          <div class="timer">{{ mainStore.timer.value }}</div>
 
-        <div class="question">
-          <span>Wo ist </span>
-          <StationName v-if="mainStore.question" :station="mainStore.question" />?
+          <div class="question">
+            <span>Wo ist </span>
+            <StationName v-if="mainStore.question" :station="mainStore.question" />?
+          </div>
+
+          <div class="score">
+            <span>
+              {{ mainStore.score }}
+            </span>
+            <span class="score-text">Punkte</span>
+            <span class="score-points" :class="{ show: pointAnimation }" :style="``"
+              >+{{ points }}</span
+            >
+          </div>
         </div>
 
-        <div class="score">
-          <span>
-            {{ mainStore.score }}
-          </span>
-          <span class="score-text">Punkte</span>
-          <span class="score-points" :class="{ show: pointAnimation }" :style="``"
-            >+{{ points }}</span
-          >
+        <div class="progress">
+          <div :style="`width: ${mainStore.progress}%`"></div>
         </div>
-      </div>
-
-      <div class="progress">
-        <div :style="`width: ${mainStore.progress}%`"></div>
       </div>
 
       <div class="map">
@@ -129,6 +131,12 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .header {
