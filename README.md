@@ -37,6 +37,7 @@ npm run lint
 # Tools
 
 - https://github.com/anvaka/panzoom
+- https://icons.lightvue.org/
 
 # TODO
 

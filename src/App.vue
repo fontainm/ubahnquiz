@@ -26,9 +26,9 @@ import stations from '@/data/stations.json'
                 {{ mainStore.score }}
               </span>
               <span class="score-text">Punkte</span>
-              <span class="score-points" :class="{ show: pointAnimation }" :style="``"
-                >+{{ points }}</span
-              >
+              <span class="score-points" :class="{ show: pointAnimation }" :style="``">
+                +{{ points }}
+              </span>
             </div>
 
             <div class="settings">
