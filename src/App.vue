@@ -2,6 +2,7 @@
 import UndergroundMap from '@/components/UndergroundMap.vue'
 import StationName from '@/components/StationName.vue'
 import GameOverModal from '@/components/GameOverModal.vue'
+import SettingsModal from '@/components/SettingsModal.vue'
 import stations from '@/data/stations.json'
 </script>
 
@@ -10,21 +11,29 @@ import stations from '@/data/stations.json'
     <div class="page">
       <div class="wrapper">
         <div class="header">
-          <div class="timer">{{ mainStore.timer.value }}</div>
+          <div class="header-left">
+            <div class="timer">{{ mainStore.timer.value }}</div>
+          </div>
 
           <div class="question">
             <span>Wo ist </span>
             <StationName v-if="mainStore.question" :station="mainStore.question" />?
           </div>
 
-          <div class="score">
-            <span>
-              {{ mainStore.score }}
-            </span>
-            <span class="score-text">Punkte</span>
-            <span class="score-points" :class="{ show: pointAnimation }" :style="``"
-              >+{{ points }}</span
-            >
+          <div class="header-right">
+            <div class="score">
+              <span>
+                {{ mainStore.score }}
+              </span>
+              <span class="score-text">Punkte</span>
+              <span class="score-points" :class="{ show: pointAnimation }" :style="``"
+                >+{{ points }}</span
+              >
+            </div>
+
+            <div class="settings">
+              <i class="light-icon-adjustments-horizontal" @click="showSettingsModal = true"></i>
+            </div>
           </div>
         </div>
 
@@ -51,6 +60,8 @@ import stations from '@/data/stations.json'
       <StationName :station="hoveredStation" />
     </div>
 
+    <SettingsModal :showModal="showSettingsModal" @close="showSettingsModal = false" />
+
     <GameOverModal />
   </main>
 </template>
@@ -69,7 +80,8 @@ export default {
       mousePosition: { x: 0, y: 0 },
       points: 0,
       pointAnimation: false,
-      tries: 0
+      tries: 0,
+      showSettingsModal: false
     }
   },
 
@@ -140,6 +152,7 @@ export default {
 }
 
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -154,14 +167,21 @@ export default {
     white-space: nowrap;
   }
 
-  .timer,
-  .score {
-    width: 90px;
+  .header-left,
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-right {
+    justify-content: flex-end;
   }
 
   .score {
     position: relative;
     text-align: right;
+    display: flex;
+    align-items: center;
 
     .score-text {
       font-size: 1rem;
@@ -179,6 +199,15 @@ export default {
       &.show {
         animation: 2s normal ease point-animation;
       }
+    }
+  }
+
+  .settings {
+    display: flex;
+    margin-left: 1rem;
+
+    i {
+      cursor: pointer;
     }
   }
 }
@@ -216,14 +245,19 @@ export default {
       justify-content: center;
     }
 
-    .score,
-    .timer {
+    .header-left,
+    .header-right {
       font-size: 1.25rem;
       position: absolute;
       top: 5rem;
     }
 
-    .score {
+    .settings {
+      right: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .header-right {
       right: 1rem;
 
       .score-text {

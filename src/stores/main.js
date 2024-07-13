@@ -94,12 +94,16 @@ export const useMainStore = defineStore('main', {
     },
 
     endGame() {
-      this.gameOver = true
+      this.setGameOver(true)
       clearInterval(this.timer.interval)
     },
 
+    setGameOver(gameOver) {
+      this.gameOver = gameOver
+    },
+
     resetGame() {
-      this.gameOver = false
+      clearInterval(this.timer.interval)
       this.timer = {
         value: '00:00',
         start: 0,
@@ -112,6 +116,7 @@ export const useMainStore = defineStore('main', {
       })
       this.newQuestion()
       this.score = 0
+      this.setGameOver(false)
     }
   }
 })

@@ -7,9 +7,9 @@ body {
 button {
   background-color: #eee;
   border-width: 0;
-  color: wh#333;
+  color: #333;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   font-size: 1rem;
   font-weight: 500;
   line-height: 20px;
@@ -23,13 +23,28 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  justify-content: center;
+
+  &:hover {
+    background-color: #aaa;
+  }
+  &:disabled,
+  &[disabled] {
+    pointer-events: none;
+    background-color: #eee;
+    opacity: 0.4;
+  }
+
+  i {
+    margin-right: 0.5rem;
+  }
 }
 
-button:hover {
-  background-color: #aaa;
-}
-
-button:disabled,
-button[disabled] {
-  pointer-events: none;
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }

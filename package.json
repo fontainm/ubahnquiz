@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.11",
+    "light-icons": "^1.0.12",
     "panzoom": "^9.4.3",
     "pinia": "^2.1.7",
     "vue": "^3.4.29"

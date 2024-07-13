@@ -40,8 +40,5 @@ npm run lint
 
 # TODO
 
-- burger menu
-  - dark mode
-  - local storage + reset
-  - github link
-- close modal without reset
+- dark mode
+- local storage
