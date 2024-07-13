@@ -1,7 +1,7 @@
 <template>
   <div v-if="station" class="stationname">
     <div class="lines">
-      <img v-for="line in station.lines" :key="line" :src="`${line}.svg`" class="line" />
+      <img v-for="line in station.lines" :key="line" :src="`img/${line}.svg`" class="line" />
     </div>
     <span>
       {{ station.name }}
