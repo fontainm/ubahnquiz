@@ -16,7 +16,7 @@ import stations from '@/data/stations.json'
           </div>
 
           <div class="question">
-            <span>Wo ist </span>
+            <span class="where">Wo ist</span>
             <StationName v-if="mainStore.question" :station="mainStore.question" />?
           </div>
 
@@ -174,6 +174,10 @@ export default {
     align-items: center;
     max-height: 2rem;
     white-space: nowrap;
+
+    .where {
+      margin-right: 0.5rem;
+    }
   }
 
   .header-left,
@@ -246,8 +250,11 @@ export default {
   position: absolute;
   font-size: 1.5rem;
   display: flex;
-  padding-left: 1rem;
+  margin-left: 1rem;
+  padding-right: 0.5rem;
   align-items: center;
+  white-space: nowrap;
+  background: var(--background-color);
 }
 
 @media screen and (max-width: 767px) {

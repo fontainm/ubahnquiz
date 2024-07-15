@@ -184,10 +184,6 @@ path {
   }
 }
 
-.dark path.line {
-  filter: brightness(0.75);
-}
-
 @keyframes hint-animation-1 {
   from {
     fill: var(--background-color);

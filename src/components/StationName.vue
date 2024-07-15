@@ -3,7 +3,7 @@
     <div class="lines">
       <img v-for="line in station.lines" :key="line" :src="`img/${line}.svg`" class="line" />
     </div>
-    <span>
+    <span class="name">
       {{ station.name }}
     </span>
   </div>
@@ -23,7 +23,6 @@ export default {
 .stationname {
   display: inline-flex;
   align-items: center;
-  margin-left: 0.5rem;
 
   .lines {
     margin-right: 0.5rem;
@@ -33,6 +32,9 @@ export default {
 
   .line {
     height: inherit;
+  }
+
+  .name {
   }
 }
 </style>

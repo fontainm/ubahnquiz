@@ -18,9 +18,14 @@ const toggleDark = useToggle(isDark)
         <i class="light-icon-arrow-back"></i>
         Neustart
       </button>
-      <a href="https://www.github.com/fontainm" target="_blank">
-        <button><i class="light-icon-brand-github"></i>GitHub</button>
-      </a>
+      <div class="contact">
+        <a href="https://www.github.com/fontainm" target="_blank">
+          <button><i class="light-icon-brand-github"></i>GitHub</button>
+        </a>
+        <a href="mailto:hallo@mathiasfontain.at">
+          <button><i class="light-icon-mail"></i>Kontakt</button>
+        </a>
+      </div>
     </div>
   </GameModal>
 </template>
@@ -61,5 +66,17 @@ export default {
 .buttons {
   display: flex;
   flex-direction: column;
+}
+
+.contact {
+  display: flex;
+
+  > a {
+    width: 50%;
+
+    &:first-child {
+      margin-right: 0.6rem;
+    }
+  }
 }
 </style>
