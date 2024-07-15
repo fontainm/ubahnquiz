@@ -15,18 +15,22 @@ button {
   color: var(--text-color);
   cursor: pointer;
   display: inline-flex;
+  flex-direction: column;
   font-size: 1rem;
   font-weight: 300;
   list-style: none;
-  padding: 10px 12px;
   text-align: center;
   transition: all 200ms;
   vertical-align: baseline;
-  white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   justify-content: center;
+  width: 130px;
+  height: 130px;
+  padding: 1rem;
+  margin: 0.5rem;
+  align-items: center;
 
   &:hover {
     background-color: #aaa;
@@ -39,7 +43,8 @@ button {
   }
 
   i {
-    margin-right: 0.5rem;
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem;
   }
 }
 

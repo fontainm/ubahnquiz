@@ -3,6 +3,9 @@
     <div v-if="showModal" class="modal" role="dialog">
       <div class="content">
         <button class="close" @click="closeModal">×</button>
+        <div class="icon">
+          <i :class="`light-icon-${icon}`"></i>
+        </div>
         <slot />
       </div>
     </div>
@@ -13,6 +16,9 @@
 export default {
   props: {
     showModal: {
+      required: true
+    },
+    icon: {
       required: true
     }
   },
@@ -28,13 +34,13 @@ export default {
 <style lang="scss">
 .modal {
   position: fixed;
-  z-index: 9998;
+  z-index: 999;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   transition: opacity 0.3s ease;
-  background: #00000066;
+  background: #00000077;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,44 +49,34 @@ export default {
     position: relative;
     background: var(--background-color);
     width: 300px;
-    padding: 1rem;
+    padding: 0.75rem;
     border: 1px solid var(--button-color);
     text-align: center;
 
-    h2 {
-      margin-top: 0;
-      font-weight: 300;
-      font-size: 2rem;
-    }
-
-    .stats {
-      font-size: 1.5rem;
-      flex-direction: column;
+    .icon {
+      background: var(--background-color);
+      border-radius: 50%;
       margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-      & > div {
-        margin-bottom: 0.5rem;
+      i {
+        font-size: 3rem;
       }
-    }
-
-    .stats,
-    .buttons {
-      display: flex;
-      justify-content: space-around;
     }
   }
 
   button {
-    width: 100%;
-    margin: 0.3rem 0;
-
     &.close {
       position: absolute;
       width: auto;
+      height: auto;
       right: 0;
       top: 0;
       background: transparent;
       font-size: 1.5rem;
+      margin: 0;
     }
   }
 }
