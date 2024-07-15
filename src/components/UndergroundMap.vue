@@ -183,26 +183,4 @@ path {
     stroke: var(--water-color);
   }
 }
-
-@keyframes hint-animation-1 {
-  from {
-    fill: var(--background-color);
-  }
-
-  to {
-    fill: var(--text-color);
-  }
-}
-
-@keyframes hint-animation-2 {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  to {
-    transform: scale(40);
-    opacity: 0;
-  }
-}
 </style>

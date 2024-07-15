@@ -1,18 +1,5 @@
-:root {
-  --background-color: #fff;
-  --text-color: #333;
-  --button-color: #eee;
-  --station-color: #fff;
-  --water-color: #dbf2f3;
-}
-
-.dark {
-  --background-color: #1a1a1a;
-  --text-color: #fff;
-  --button-color: #333;
-  --station-color: #eee;
-  --water-color: #07283e;
-}
+@import './variables.scss';
+@import './animations.scss';
 
 body {
   margin: 0;

@@ -302,16 +302,4 @@ export default {
     font-size: 1.3rem;
   }
 }
-
-@keyframes point-animation {
-  from {
-    opacity: 1;
-    top: 0;
-  }
-
-  to {
-    opacity: 0;
-    top: -50px;
-  }
-}
 </style>

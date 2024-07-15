@@ -1,0 +1,33 @@
+@keyframes point-animation {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+
+  to {
+    opacity: 0;
+    top: -50px;
+  }
+}
+
+@keyframes hint-animation-1 {
+  from {
+    fill: var(--background-color);
+  }
+
+  to {
+    fill: var(--text-color);
+  }
+}
+
+@keyframes hint-animation-2 {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(40);
+    opacity: 0;
+  }
+}
