@@ -4,8 +4,7 @@ import GameModal from './GameModal.vue'
 
 <template>
   <div>
-    <GameModal :showModal="mainStore.gameOver" @close="mainStore.setGameOver(false)">
-      <h2>Geschafft!</h2>
+    <GameModal :showModal="mainStore.gameOver" @close="mainStore.setGameOver(false)" icon="trophy">
       <div class="stats">
         <div>Zeit: {{ mainStore.timer.value }}</div>
         <div>Punkte: {{ mainStore.score }}</div>
@@ -62,7 +61,6 @@ export default {
 <style scoped lang="scss">
 .stats {
   font-size: 1.5rem;
-  flex-direction: column;
   margin-bottom: 1rem;
 
   & > div {

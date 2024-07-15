@@ -95,6 +95,7 @@ export const useMainStore = defineStore('main', {
 
     endGame() {
       this.setGameOver(true)
+      this.question = null;
       clearInterval(this.timer.interval)
     },
 

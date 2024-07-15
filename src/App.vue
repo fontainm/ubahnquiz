@@ -15,10 +15,11 @@ import stations from '@/data/stations.json'
             <div class="timer">{{ mainStore.timer.value }}</div>
           </div>
 
-          <div class="question">
+          <div v-if="mainStore.question" class="question">
             <span class="where">Wo ist</span>
             <StationName v-if="mainStore.question" :station="mainStore.question" />?
           </div>
+          <i v-else class="question trophy light-icon-trophy" @click="mainStore.setGameOver(true)"></i>
 
           <div class="header-right">
             <div class="score">
@@ -177,6 +178,10 @@ export default {
 
     .where {
       margin-right: 0.5rem;
+    }
+
+    .trophy {
+      cursor: pointer;
     }
   }
 

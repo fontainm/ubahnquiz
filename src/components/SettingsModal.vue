@@ -7,8 +7,7 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <GameModal :showModal="showModal" @close="$emit('close')">
-    <h2>Settings</h2>
+  <GameModal :showModal="showModal" @close="$emit('close')" icon="adjustments-horizontal">
     <div class="buttons">
       <button @click="toggleDark()">
         <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
@@ -61,22 +60,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.buttons {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact {
-  display: flex;
-
-  > a {
-    width: 50%;
-
-    &:first-child {
-      margin-right: 0.6rem;
-    }
-  }
-}
-</style>
