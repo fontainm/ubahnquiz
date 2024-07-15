@@ -19,7 +19,7 @@ const toggleDark = useToggle(isDark)
         Neustart
       </button>
       <div class="contact">
-        <a href="https://www.github.com/fontainm" target="_blank">
+        <a href="https://github.com/fontainm/ubahnquiz" target="_blank">
           <button><i class="light-icon-brand-github"></i>GitHub</button>
         </a>
         <a href="mailto:hallo@mathiasfontain.at">
