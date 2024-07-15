@@ -42,4 +42,5 @@ npm run lint
 # TODO
 
 - local storage
-- Add contact
+- PR & Pipelines
+- Domain
