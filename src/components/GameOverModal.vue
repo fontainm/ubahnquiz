@@ -52,7 +52,7 @@ export default {
           this.showMessage = false
         }, 2000)
       } catch ($) {
-        console.log('error')
+        //
       }
     }
   }

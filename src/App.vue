@@ -101,10 +101,19 @@ export default {
       }
       this.hoveredStation = station
       if (event) {
-        this.mousePosition = {
-          x: event.pageX,
-          y: event.pageY
+        let position = {}
+        if (event.pageX) {
+          position = {
+            x: event.pageX,
+            y: event.pageY
+          }
+        } else if (event.changedTouches[0]) {
+          position = {
+            x: event.changedTouches[0].pageX,
+            y: event.changedTouches[0].pageY
+          }
         }
+        this.mousePosition = position
       }
     },
 
@@ -278,6 +287,12 @@ export default {
     .timer {
       left: 1rem;
     }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    font-size: 1.3rem;
   }
 }
 

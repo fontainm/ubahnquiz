@@ -28,6 +28,7 @@ export default {
   .lines {
     margin-right: 0.5rem;
     height: 2rem;
+    white-space: nowrap;
   }
 
   .line {

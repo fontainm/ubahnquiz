@@ -15,6 +15,7 @@
       stroke-linejoin: round;
       stroke-miterlimit: 1.5;
     "
+    @touchstart="$emit('leaveStation')"
   >
     <g id="underground">
       <g id="waters">
@@ -60,8 +61,8 @@
           stroke-width="2"
           @mouseover="$emit('overStation', station, $event)"
           @mouseleave="$emit('leaveStation')"
-          @click="station.solved ? null : $emit('clickStation', station)"
-          @touchend="$emit('clickStation', station)"
+          @click="handleClickStation(station, $event)"
+          @touchend="handleClickStation(station, $event)"
         />
 
         <circle
@@ -109,6 +110,16 @@ export default {
       boundsPadding: 0.5,
       zoomDoubleClickSpeed: 1
     })
+  },
+
+  methods: {
+    handleClickStation(station, event) {
+      if (station.solved) {
+        this.$emit('overStation', station, event)
+      } else {
+        this.$emit('clickStation', station)
+      }
+    }
   }
 }
 </script>

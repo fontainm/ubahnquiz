@@ -42,3 +42,4 @@ npm run lint
 # TODO
 
 - local storage
+- Add contact
