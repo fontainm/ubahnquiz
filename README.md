@@ -36,5 +36,4 @@ npm run lint
 # TODO
 
 - local storage
-- PR & Pipelines & Domain
-- Tests
+- E2E Tests
