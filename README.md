@@ -35,5 +35,6 @@ npm run lint
 
 # TODO
 
+- Health Check
 - local storage
 - E2E Tests
