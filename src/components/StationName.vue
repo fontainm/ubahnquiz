@@ -3,7 +3,7 @@
     <div class="lines">
       <img v-for="line in station.lines" :key="line" :src="`img/${line}.svg`" class="line" />
     </div>
-    <span class="name">
+    <span class="name" translate="no">
       {{ station.name }}
     </span>
   </div>
