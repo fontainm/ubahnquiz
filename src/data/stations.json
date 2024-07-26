@@ -42,7 +42,7 @@
   },
   {
     "id": 29,
-    "name": "Landstraße (Wien Mitte)",
+    "name": "Landstraße",
     "cx": "1171.44",
     "cy": "951.697",
     "lines": ["U3", "U4"]
@@ -52,7 +52,7 @@
   { "id": 32, "name": "Kettenbrückengasse", "cx": "840.185", "cy": "1176.17", "lines": ["U4"] },
   { "id": 33, "name": "Pilgramgasse", "cx": "731.189", "cy": "1176.17", "lines": ["U4"] },
   { "id": 34, "name": "Margaretengürtel", "cx": "620.939", "cy": "1176.17", "lines": ["U4"] },
-  { "id": 35, "name": "Meidlinger Hauptstraße", "cx": "446.472", "cy": "1176.17", "lines": ["U4"] },
+  { "id": 35, "name": "Meidling Hauptstraße", "cx": "446.472", "cy": "1176.17", "lines": ["U4"] },
   { "id": 36, "name": "Schönbrunn", "cx": "375.623", "cy": "1176.17", "lines": ["U4"] },
   { "id": 37, "name": "Hietzing", "cx": "305.084", "cy": "1176.17", "lines": ["U4"] },
   { "id": 38, "name": "Braunschweiggasse", "cx": "234.987", "cy": "1176.17", "lines": ["U4"] },
