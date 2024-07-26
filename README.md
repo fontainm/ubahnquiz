@@ -38,3 +38,15 @@ npm run lint
 - Health Check
 - local storage
 - E2E Tests
+
+# Feature Requests
+
+- Ranking
+- Spielmodi
+  - Keine Linieninfo
+  - Keine Linienfarben
+  - Station bleibt weiß nach solved
+  - S-Bahn-Stationen
+  - Straßenbahn-Linien
+  - Bus-Linien
+
