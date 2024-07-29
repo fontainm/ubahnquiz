@@ -9,6 +9,19 @@ body {
   color: var(--text-color);
 }
 
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
 button {
   background-color: var(--button-color);
   border-width: 0;
@@ -46,6 +59,20 @@ button {
     font-size: 2rem !important;
     margin-bottom: 0.5rem;
   }
+
+  &.negative {
+    background: var(--text-color);
+    color: var(--background-color);
+
+    &:hover {
+      background-color: #444;
+    }
+  }
+
+  &.large {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 h1,
@@ -55,4 +82,19 @@ h4 {
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+i {
+  cursor: pointer;
+  display: flex;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #999;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
