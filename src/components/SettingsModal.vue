@@ -25,6 +25,18 @@ const toggleDark = useToggle(isDark)
           <button><i class="light-icon-mail"></i>Kontakt</button>
         </a>
       </div>
+      <div class="donate">
+        <div class="donate-text">
+          Wenn dir mein Projekt gefällt und du mich unterstützen möchtest, freue ich mich über eine
+          Spende via PayPal
+        </div>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=9KGFJJ4G3L6ZJ" target="_blank">
+          <button class="donate-button">
+            <i class="light-icon-brand-paypal"></i>
+            Unterstützen
+          </button>
+        </a>
+      </div>
     </div>
   </GameModal>
 </template>
@@ -60,3 +72,23 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.donate {
+  .donate-text {
+    font-size: 0.75rem;
+    padding: 0 0.5rem 0.5rem;
+  }
+
+  .donate-button {
+    height: 65px;
+    width: 280px;
+    flex-direction: row;
+    margin: 0 0 1rem 0;
+
+    i {
+      margin: 0 0.5rem 0 0;
+    }
+  }
+}
+</style>
