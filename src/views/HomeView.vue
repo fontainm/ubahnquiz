@@ -20,6 +20,7 @@ import AppFooter from '@/components/AppFooter.vue'
               <div class="city-name">{{ city.name }}</div>
               <div class="city-lines">{{ city.lines }} Linien</div>
               <div class="city-stations">{{ city.stations }} Stationen</div>
+              <i class="play light-icon-triangle"></i>
             </button>
           </RouterLink>
         </div>
@@ -41,7 +42,7 @@ export default {
       cities: [
         { id: 0, route: 'wien', name: 'Wien', lines: 5, stations: 99 },
         { id: 1, route: 'graz', name: 'Graz', lines: 2, stations: 27 },
-        { id: 2, route: 'berlin', name: 'Berlin', lines: 9, stations: 175 },
+        { id: 2, route: 'berlin', name: 'Berlin', lines: 9, stations: 175 }
       ]
     }
   },
@@ -60,11 +61,26 @@ export default {
   .city {
     .city-name {
       font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .city-lines,
     .city-stations {
       font-size: 1rem;
+    }
+
+    &:hover {
+      .play {
+        opacity: 1;
+      }
+    }
+
+    .play {
+      opacity: 0;
+      position: absolute;
+      transform: rotate(90deg);
+      font-size: 6rem !important;
+      color: var(--background-color) !important;
     }
   }
 }
