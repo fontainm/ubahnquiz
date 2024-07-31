@@ -19,7 +19,11 @@ import stations from '@/data/stations.json'
             <span class="where">Wo ist</span>
             <StationName v-if="mainStore.question" :station="mainStore.question" />?
           </div>
-          <i v-else class="question trophy light-icon-trophy" @click="mainStore.setGameOver(true)"></i>
+          <i
+            v-else
+            class="question trophy light-icon-trophy"
+            @click="mainStore.setGameOver(true)"
+          ></i>
 
           <div class="header-right">
             <div class="score">
@@ -223,14 +227,14 @@ export default {
   .settings {
     display: flex;
     margin-left: 1rem;
+  }
+
+  i {
+    cursor: pointer;
     transition: all 0.3s ease;
 
     &:hover {
       color: #999;
-    }
-
-    i {
-      cursor: pointer;
     }
   }
 }
