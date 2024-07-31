@@ -1,5 +1,6 @@
 <script setup>
 import GameModal from './GameModal.vue'
+import DonateInfo from './DonateInfo.vue'
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import GameModal from './GameModal.vue'
           <i class="light-icon-arrow-back"></i>
           Neustart
         </button>
+        <DonateInfo />
       </div>
       <transition name="fade">
         <div v-if="showMessage" class="message">Erfolgreich kopiert!</div>
