@@ -42,6 +42,10 @@ npm run lint
 # Feature Requests
 
 - Ranking
+- Schwierigkeitsgrad
+  - Üben: 
+  - Normal: wie jetzt
+  - Schwierig: Keine Linieninfo, keine Farben, Station bleibt weiß
 - Spielmodi
   - Keine Linieninfo
   - Keine Linienfarben
@@ -49,4 +53,3 @@ npm run lint
   - S-Bahn-Stationen
   - Straßenbahn-Linien
   - Bus-Linien
-
