@@ -58,15 +58,19 @@ const toggleDark = useToggle(isDark)
         Neustart
       </button>
       <div class="contact">
-        <a href="https://github.com/fontainm/ubahnquiz" target="_blank">
-          <button><i class="light-icon-brand-github"></i>GitHub</button>
-        </a>
-        <a href="mailto:hallo@mathiasfontain.at">
-          <button><i class="light-icon-mail"></i>Kontakt</button>
-        </a>
+        <button>
+          <a href="https://github.com/fontainm/ubahnquiz" target="_blank" class="link-button">
+            <i class="light-icon-brand-github"></i>GitHub
+          </a>
+        </button>
+        <button>
+          <a href="mailto:hallo@mathiasfontain.at" class="link-button">
+            <i class="light-icon-mail"></i>Kontakt
+          </a>
+        </button>
       </div>
-      <DonateInfo />
     </div>
+    <DonateInfo />
   </GameModal>
 </template>
 
@@ -121,20 +125,22 @@ export default {
 </script>
 
 <style lang="scss">
-.donate {
-  .donate-text {
-    font-size: 0.75rem;
-    padding: 0 0.5rem 0.5rem;
-  }
+.buttons {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
-  .donate-button {
-    height: 65px;
-    width: 280px;
-    flex-direction: row;
-    margin: 0 0 1rem 0;
+.contact {
+  display: flex;
+  width: 100%;
 
-    i {
-      margin: 0 0.5rem 0 0;
+  button {
+    width: 50%;
+
+    &:not(:last-child) {
+      margin: 0 8px 0 0;
     }
   }
 }
@@ -145,6 +151,7 @@ export default {
     height: 40px;
     width: 300px;
     background: var(--button-color);
+    margin-bottom: 8px;
   }
 
   .switch-label {
@@ -204,7 +211,6 @@ export default {
 
   .difficulty-info {
     font-size: 0.75rem;
-    margin-top: 0.5rem;
   }
 }
 </style>

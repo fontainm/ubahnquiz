@@ -19,8 +19,8 @@ import DonateInfo from './DonateInfo.vue'
           <i class="light-icon-arrow-back"></i>
           Neustart
         </button>
-        <DonateInfo />
       </div>
+      <DonateInfo />
       <transition name="fade">
         <div v-if="showMessage" class="message">Erfolgreich kopiert!</div>
       </transition>
