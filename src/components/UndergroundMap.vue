@@ -35,6 +35,7 @@
           :key="line.id"
           :d="line.d"
           class="line"
+          :class="{ 'no-color': !showColors }"
           fill="none"
           :stroke="line.color"
           stroke-width="40"
@@ -50,7 +51,7 @@
           :class="[
             'station',
             {
-              solved: station.solved,
+              solved: station.solved && showSolved,
               hint: station.hint,
               correct: station.correct,
               wrong: station.wrong
@@ -87,6 +88,12 @@ export default {
   props: {
     stations: {
       required: true
+    },
+    showColors: {
+      default: true
+    },
+    showSolved: {
+      default: true
     }
   },
 
@@ -179,6 +186,11 @@ circle {
 }
 
 path {
+  &.line {
+    &.no-color {
+      stroke: var(--line-color);
+    }
+  }
   &.water {
     stroke: var(--water-color);
   }

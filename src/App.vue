@@ -17,7 +17,11 @@ import stations from '@/data/stations.json'
 
           <div v-if="mainStore.question" class="question">
             <span class="where">Wo ist</span>
-            <StationName v-if="mainStore.question" :station="mainStore.question" />?
+            <StationName
+              v-if="mainStore.question"
+              :station="mainStore.question"
+              :showLines="difficultySettings.showLines"
+            />?
           </div>
           <i
             v-else
@@ -50,6 +54,8 @@ import stations from '@/data/stations.json'
       <div class="map">
         <UndergroundMap
           :stations="mainStore.allStations"
+          :showColors="difficultySettings.showLineColor"
+          :showSolved="difficultySettings.showSolved"
           @overStation="setHoveredStation"
           @leaveStation="hoveredStation = null"
           @clickStation="handleClickStation"
@@ -96,12 +102,19 @@ export default {
   },
 
   computed: {
-    mainStore: () => useMainStore()
+    mainStore: () => useMainStore(),
+
+    difficultySettings() {
+      return this.mainStore.selectedDifficulty.settings
+    }
   },
 
   methods: {
     setHoveredStation(station, event) {
-      if (!station.solved) {
+      if (!this.difficultySettings.showSolved) {
+        return
+      }
+      if (!station.solved && !this.difficultySettings.showNames) {
         return
       }
       this.hoveredStation = station
@@ -128,7 +141,7 @@ export default {
       }
       if (station.id == this.mainStore.question.id) {
         this.mainStore.setSolved(station, this.tries)
-        this.points = 3 - this.tries
+        this.points = this.difficultySettings.maxPoints - this.tries
         if (this.points > 0) {
           this.mainStore.addScore(this.points)
           this.pointAnimation = true

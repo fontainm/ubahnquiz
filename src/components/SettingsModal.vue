@@ -1,6 +1,7 @@
 <script setup>
 import GameModal from './GameModal.vue'
 import DonateInfo from './DonateInfo.vue'
+import { difficulties } from '../consts/difficulties'
 import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()
@@ -12,41 +13,41 @@ const toggleDark = useToggle(isDark)
     <div class="difficulty">
       <div class="switch">
         <input
-          v-model="difficulty"
-          value="easy"
+          v-model="selectedDifficulty"
+          :value="difficulties.EASY"
           type="radio"
           name="difficulty"
           class="switch-input"
           id="easy"
         />
-        <label class="switch-label switch-label-y" for="easy">
+        <label class="switch-label switch-label-0" for="easy">
           <div class="label-title">Lernmodus</div>
         </label>
         <input
-          v-model="difficulty"
-          value="normal"
+          v-model="selectedDifficulty"
+          :value="difficulties.STANDARD"
           type="radio"
           name="difficulty"
           class="switch-input"
           id="normal"
         />
-        <label class="switch-label switch-label-i" for="normal">
+        <label class="switch-label switch-label-1" for="normal">
           <div class="label-title">Standard</div>
         </label>
         <input
-          v-model="difficulty"
-          value="hard"
+          v-model="selectedDifficulty"
+          :value="difficulties.HARD"
           type="radio"
           name="difficulty"
           class="switch-input"
           id="hard"
         />
-        <label class="switch-label switch-label-n" for="hard">
+        <label class="switch-label switch-label-2" for="hard">
           <div class="label-title">Hardcore</div>
         </label>
         <span class="switch-selector"></span>
       </div>
-      <div class="difficulty-info">{{ difficultyInfo }}</div>
+      <div class="difficulty-info">{{ selectedDifficulty?.text }}</div>
     </div>
     <div class="buttons">
       <div class="row">
@@ -86,25 +87,17 @@ export default {
     }
   },
 
-  data() {
-    return {
-      difficulty: 'normal'
-    }
-  },
-
   computed: {
     mainStore: () => useMainStore(),
 
-    difficultyInfo() {
-      switch (this.difficulty) {
-        case 'easy':
-          return 'Lernmodus: Perfekt für das erstmalige Lernen'
-        case 'normal':
-          return 'Standard: Für die erste Herausforderung'
-        case 'hard':
-          return "Schwierig: Ohne Farbhilfe, dafür gibt's Extrapunkte"
+    selectedDifficulty: {
+      get() {
+        return this.mainStore.selectedDifficulty
+      },
+
+      set(value) {
+        this.mainStore.selectedDifficulty = value
       }
-      return ''
     }
   },
 
@@ -195,13 +188,13 @@ export default {
     transition-property: color, text-shadow;
   }
 
-  .switch-input:checked + .switch-label-y ~ .switch-selector {
+  .switch-input:checked + .switch-label-0 ~ .switch-selector {
     transform: translateX(0%);
   }
-  .switch-input:checked + .switch-label-i ~ .switch-selector {
+  .switch-input:checked + .switch-label-1 ~ .switch-selector {
     transform: translateX(100%);
   }
-  .switch-input:checked + .switch-label-n ~ .switch-selector {
+  .switch-input:checked + .switch-label-2 ~ .switch-selector {
     transform: translateX(200%);
   }
 

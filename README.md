@@ -35,6 +35,11 @@ npm run lint
 
 # TODO
 
+- Lernmodus Hover Transition
+- Hardcore: Success animation
+- Hardcore: 0 Punkte bei Hint
+- Schwierigkeit ändern: Neustart
+
 - Health Check
 - local storage
 - E2E Tests

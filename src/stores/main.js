@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import dayjs from 'dayjs'
+import { difficulties } from '@/consts/difficulties'
 
 export const useMainStore = defineStore('main', {
   state: () => {
@@ -13,6 +14,7 @@ export const useMainStore = defineStore('main', {
         start: 0,
         interval: null
       },
+      selectedDifficulty: difficulties.STANDARD,
       gameOver: false
     }
   },
@@ -95,7 +97,7 @@ export const useMainStore = defineStore('main', {
 
     endGame() {
       this.setGameOver(true)
-      this.question = null;
+      this.question = null
       clearInterval(this.timer.interval)
     },
 
