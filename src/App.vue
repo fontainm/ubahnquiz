@@ -170,18 +170,18 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 16px;
   font-size: 2rem;
   background: var(--background-color);
 
   .question {
     display: flex;
     align-items: center;
-    max-height: 2rem;
+    max-height: 32px;
     white-space: nowrap;
 
     .where {
-      margin-right: 0.5rem;
+      margin-right: 8px;
     }
 
     .trophy {
@@ -207,7 +207,7 @@ export default {
 
     .score-text {
       font-size: 1rem;
-      margin-left: 0.5rem;
+      margin-left: 8px;
     }
 
     .score-points {
@@ -226,7 +226,7 @@ export default {
 
   .settings {
     display: flex;
-    margin-left: 1rem;
+    margin-left: 16px;
   }
 
   i {
@@ -259,8 +259,8 @@ export default {
   position: absolute;
   font-size: 1.5rem;
   display: flex;
-  margin-left: 1rem;
-  padding-right: 0.5rem;
+  margin-left: 16px;
+  padding-right: 8px;
   align-items: center;
   white-space: nowrap;
   background: var(--background-color);
@@ -279,29 +279,29 @@ export default {
     .header-right {
       font-size: 1.25rem;
       position: absolute;
-      top: 5rem;
+      top: 80px;
     }
 
     .settings {
-      right: 1rem;
+      right: 16px;
       font-size: 1.5rem;
     }
 
     .header-right {
-      right: 1rem;
+      right: 16px;
 
       .score-text {
-        margin-left: 0.25rem;
+        margin-left: 8px;
         font-size: 1.25rem;
       }
 
       .score-points {
-        left: 5px;
+        left: 8px;
       }
     }
 
     .timer {
-      left: 1rem;
+      left: 16px;
     }
   }
 }

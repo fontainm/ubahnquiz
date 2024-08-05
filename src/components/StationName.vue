@@ -25,16 +25,13 @@ export default {
   align-items: center;
 
   .lines {
-    margin-right: 0.5rem;
-    height: 2rem;
+    margin-right: 8px;
+    height: 32px;
     white-space: nowrap;
   }
 
   .line {
     height: inherit;
-  }
-
-  .name {
   }
 }
 </style>

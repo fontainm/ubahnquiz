@@ -66,7 +66,7 @@ export default {
   margin-bottom: 16px;
 
   & > div {
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
   }
 }
 
@@ -74,9 +74,9 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -4rem;
+  bottom: -64px;
   background: #333;
   color: white;
-  padding: 1rem;
+  padding: 16px;
 }
 </style>
