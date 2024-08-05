@@ -49,15 +49,17 @@ const toggleDark = useToggle(isDark)
       <div class="difficulty-info">{{ difficultyInfo }}</div>
     </div>
     <div class="buttons">
-      <button @click="toggleDark()">
-        <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
-        {{ isDark ? 'Light Mode' : 'Dark Mode' }}
-      </button>
-      <button @click="handleClickReset">
-        <i class="light-icon-arrow-back"></i>
-        Neustart
-      </button>
-      <div class="contact">
+      <div class="row">
+        <button @click="toggleDark()">
+          <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
+          {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+        </button>
+        <button @click="handleClickReset">
+          <i class="light-icon-arrow-back"></i>
+          Neustart
+        </button>
+      </div>
+      <div class="row">
         <button>
           <a href="https://github.com/fontainm/ubahnquiz" target="_blank" class="link-button">
             <i class="light-icon-brand-github"></i>GitHub
@@ -126,15 +128,19 @@ export default {
 
 <style lang="scss">
 .buttons {
-  margin: 16px 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
-.contact {
+.row {
   display: flex;
   width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
 
   button {
     width: 50%;
@@ -146,9 +152,11 @@ export default {
 }
 
 .difficulty {
+  margin-bottom: 16px;
+
   .switch {
     position: relative;
-    height: 40px;
+    height: 50px;
     width: 300px;
     background: var(--button-color);
     margin-bottom: 8px;
@@ -204,7 +212,7 @@ export default {
     left: 0px;
     display: block;
     width: 100px;
-    height: 40px;
+    height: 50px;
     background-color: var(--text-color);
     transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }

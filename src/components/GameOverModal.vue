@@ -63,7 +63,7 @@ export default {
 <style scoped lang="scss">
 .stats {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 
   & > div {
     margin-bottom: 0.5rem;
