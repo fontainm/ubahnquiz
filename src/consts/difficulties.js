@@ -7,6 +7,7 @@ export const difficulties = Object.freeze({
     settings: {
       pointFactor: 0,
       showScore: false,
+      showInitialHint: true,
       showNames: true,
       showLines: true,
       showLineColor: true,
@@ -21,6 +22,7 @@ export const difficulties = Object.freeze({
     settings: {
       pointFactor: 1,
       showScore: true,
+      showInitialHint: false,
       showNames: false,
       showLines: true,
       showLineColor: true,
@@ -35,6 +37,7 @@ export const difficulties = Object.freeze({
     settings: {
       pointFactor: 2,
       showScore: true,
+      showInitialHint: false,
       showNames: false,
       showLines: false,
       showLineColor: false,

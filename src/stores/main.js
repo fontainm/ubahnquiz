@@ -101,6 +101,9 @@ export const useMainStore = defineStore('main', {
       this.lastQuestion = this.question
       this.question =
         this.unsolvedStations[Math.floor(Math.random() * this.unsolvedStations.length)]
+      if (this.selectedDifficulty.settings.showInitialHint) {
+        this.setHint()
+      }
     },
 
     endGame() {
