@@ -63,13 +63,15 @@ import stations from '@/data/stations.json'
       </div>
     </div>
 
-    <div
-      v-show="hoveredStation"
-      class="info"
-      :style="`left: ${mousePosition.x}px; top: ${mousePosition.y}px`"
-    >
-      <StationName :station="hoveredStation" />
-    </div>
+    <transition name="fade" mode="out-in">
+      <div
+        v-if="hoveredStation"
+        class="info"
+        :style="`left: ${mousePosition.x}px; top: ${mousePosition.y}px`"
+      >
+        <StationName :station="hoveredStation" />
+      </div>
+    </transition>
 
     <SettingsModal :showModal="showSettingsModal" @close="showSettingsModal = false" />
 
