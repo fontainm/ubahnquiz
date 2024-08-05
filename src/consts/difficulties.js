@@ -5,7 +5,8 @@ export const difficulties = Object.freeze({
     name: 'Lernmodus',
     text: 'Perfekt für das erstmalige Lernen',
     settings: {
-      maxPoints: 0,
+      pointFactor: 0,
+      showScore: false,
       showNames: true,
       showLines: true,
       showLineColor: true,
@@ -18,7 +19,8 @@ export const difficulties = Object.freeze({
     name: 'Standard',
     text: 'Für die erste Herausforderung',
     settings: {
-      maxPoints: 3,
+      pointFactor: 1,
+      showScore: true,
       showNames: false,
       showLines: true,
       showLineColor: true,
@@ -29,9 +31,10 @@ export const difficulties = Object.freeze({
     id: 'hard',
     level: 2,
     name: 'Schwierig',
-    text: "Ohne Farbhilfe, dafür gibt's Extrapunkte",
+    text: "Ohne Farbhilfe, dafür gibt's doppelte Punkte",
     settings: {
-      maxPoints: 5,
+      pointFactor: 2,
+      showScore: true,
       showNames: false,
       showLines: false,
       showLineColor: false,

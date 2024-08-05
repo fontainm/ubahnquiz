@@ -43,11 +43,13 @@ const toggleDark = useToggle(isDark)
           id="hard"
         />
         <label class="switch-label switch-label-2" for="hard">
-          <div class="label-title">Hardcore</div>
+          <div class="label-title">Schwierig</div>
         </label>
         <span class="switch-selector"></span>
       </div>
-      <div class="difficulty-info">{{ selectedDifficulty?.text }}</div>
+      <div class="difficulty-info">
+        {{ selectedDifficulty.name }}: {{ selectedDifficulty?.text }}
+      </div>
     </div>
     <div class="buttons">
       <div class="row">

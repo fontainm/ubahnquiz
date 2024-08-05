@@ -55,8 +55,7 @@
               hint: station.hint,
               correct: station.correct,
               wrong: station.wrong
-            },
-            station.tries ? `tries-${station.tries}` : ''
+            }
           ]"
           r="22"
           stroke-width="2"
@@ -148,15 +147,6 @@ circle {
 
     &.solved {
       fill: #50c878 !important;
-    }
-
-    &.tries-1 {
-    }
-
-    &.tries-2 {
-    }
-
-    &.tries-3 {
     }
 
     &.hint {

@@ -36,9 +36,8 @@ npm run lint
 # TODO
 
 - Hardcore: Success animation
-- Hardcore: 0 Punkte bei Hint
 - Schwierigkeit ändern: Neustart
-- Lernmodus: Kompass
+- Lernmodus verbessern
 
 - Health Check
 - local storage

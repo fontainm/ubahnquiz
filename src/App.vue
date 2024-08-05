@@ -30,7 +30,7 @@ import stations from '@/data/stations.json'
           ></i>
 
           <div class="header-right">
-            <div class="score">
+            <div v-if="difficultySettings.showScore" class="score">
               <span>
                 {{ mainStore.score }}
               </span>
@@ -93,7 +93,6 @@ export default {
       mousePosition: { x: 0, y: 0 },
       points: 0,
       pointAnimation: false,
-      tries: 0,
       showSettingsModal: false
     }
   },
@@ -142,8 +141,10 @@ export default {
         this.mainStore.startTimer()
       }
       if (station.id == this.mainStore.question.id) {
-        this.mainStore.setSolved(station, this.tries)
-        this.points = this.difficultySettings.maxPoints - this.tries
+        this.points =
+          3 * this.difficultySettings.pointFactor -
+          this.mainStore.tries * this.difficultySettings.pointFactor
+        this.mainStore.setSolved(station)
         if (this.points > 0) {
           this.mainStore.addScore(this.points)
           this.pointAnimation = true
@@ -151,15 +152,8 @@ export default {
             this.pointAnimation = false
           }, 2000)
         }
-        this.tries = 0
       } else {
         this.mainStore.setWrong(station)
-        if (this.tries < 3) {
-          this.tries++
-        }
-        if (this.tries === 3) {
-          this.mainStore.setHint()
-        }
       }
     }
   }
