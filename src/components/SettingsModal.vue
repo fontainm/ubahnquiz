@@ -72,7 +72,6 @@ const toggleDark = useToggle(isDark)
 
 <script>
 import { useMainStore } from '@/stores/main'
-import difficulties from '../data/difficulties.json'
 
 export default {
   props: {
@@ -83,8 +82,7 @@ export default {
 
   data() {
     return {
-      difficulty: 'normal',
-      difficulties
+      difficulty: 'normal'
     }
   },
 
