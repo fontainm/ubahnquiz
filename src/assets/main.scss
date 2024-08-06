@@ -19,6 +19,7 @@ button,
 }
 
 button {
+  position: relative;
   background-color: var(--button-color);
   font-family: sans-serif;
   border-width: 0;
@@ -34,6 +35,28 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
   padding: 16px;
+  overflow: hidden;
+
+  &.highlight {
+    position: relative;
+    &::after {
+      animation: sheen 3s infinite;
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      background: linear-gradient(
+        to right,
+        var(--button-color),
+        white,
+        var(--button-color),
+      );
+      opacity: 0.4;
+      height: 80px;
+      width: 80px;
+      transform: rotateZ(20deg);
+    }
+  }
 
   &:not(:last-child) {
     margin-bottom: 8px;
@@ -42,6 +65,7 @@ button {
   &:hover {
     background-color: #aaa;
   }
+
   &:disabled,
   &[disabled] {
     pointer-events: none;

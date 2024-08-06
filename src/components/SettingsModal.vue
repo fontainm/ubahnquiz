@@ -9,7 +9,7 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <GameModal :showModal="showModal" @close="$emit('close')" icon="adjustments-horizontal">
+  <GameModal :showModal="showModal" @close="closeModal" icon="adjustments-horizontal">
     <div class="difficulty">
       <div class="switch">
         <input
@@ -52,16 +52,27 @@ const toggleDark = useToggle(isDark)
       </div>
     </div>
     <div class="buttons">
-      <div class="row">
-        <button @click="toggleDark()">
-          <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
-          {{ isDark ? 'Light Mode' : 'Dark Mode' }}
-        </button>
-        <button @click="handleClickReset">
-          <i class="light-icon-arrow-back"></i>
-          Neustart
-        </button>
-      </div>
+      <button
+        :class="{ highlight: selectedDifficulty.id !== mainStore.selectedDifficulty.id }"
+        @click="handleClickReset"
+      >
+        <i
+          :class="
+            selectedDifficulty.id === mainStore.selectedDifficulty.id
+              ? 'light-icon-arrow-back'
+              : 'light-icon-device-floppy'
+          "
+        ></i>
+        <span>{{
+          selectedDifficulty.id === mainStore.selectedDifficulty.id
+            ? 'Neustarten'
+            : 'Anwenden und Neustarten'
+        }}</span>
+      </button>
+      <button @click="toggleDark()">
+        <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
+        {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+      </button>
       <div class="row">
         <button>
           <a href="https://github.com/fontainm/ubahnquiz" target="_blank" class="link-button">
@@ -89,18 +100,14 @@ export default {
     }
   },
 
-  computed: {
-    mainStore: () => useMainStore(),
-
-    selectedDifficulty: {
-      get() {
-        return this.mainStore.selectedDifficulty
-      },
-
-      set(value) {
-        this.mainStore.selectedDifficulty = value
-      }
+  data() {
+    return {
+      selectedDifficulty: difficulties.STANDARD
     }
+  },
+
+  computed: {
+    mainStore: () => useMainStore()
   },
 
   methods: {
@@ -110,11 +117,21 @@ export default {
     },
 
     handleClickReset() {
+      if (this.mainStore.selectedDifficulty !== this.selectedDifficulty) {
+        this.mainStore.selectedDifficulty = this.selectedDifficulty
+      }
+      this.mainStore.resetGame()
+      this.closeModal()
+    },
+
+    handleClickApply() {
+      this.mainStore.selectedDifficulty = this.selectedDifficulty
       this.mainStore.resetGame()
       this.closeModal()
     },
 
     closeModal() {
+      this.selectedDifficulty = this.mainStore.selectedDifficulty
       this.$emit('close')
     }
   }
@@ -214,6 +231,7 @@ export default {
 
   .difficulty-info {
     font-size: 0.75rem;
+    margin-bottom: 8px;
   }
 }
 </style>

@@ -31,3 +31,13 @@
     opacity: 0;
   }
 }
+
+@keyframes sheen {
+  40% {
+    left: calc(100% + 40px);
+  }
+
+  100% {
+    left: calc(100% + 40px);
+  }
+}

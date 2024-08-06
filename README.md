@@ -36,7 +36,7 @@ npm run lint
 # TODO
 
 - Hardcore: Success animation
-- Schwierigkeit ändern: Neustart
+- Hardcore: wrong on solved
 - Lernmodus verbessern
 
 - Health Check
