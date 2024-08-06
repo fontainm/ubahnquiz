@@ -240,7 +240,7 @@ export default {
 
   i {
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 
     &:hover {
       color: #999;

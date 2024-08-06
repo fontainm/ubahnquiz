@@ -187,6 +187,7 @@ export default {
     color: var(--text-color);
     text-align: center;
     cursor: pointer;
+    transition: all 0.2s ease;
 
     .label-title {
       font-size: 1rem;
