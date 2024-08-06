@@ -164,7 +164,7 @@ export default {
 }
 
 .difficulty {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 
   .switch {
     position: relative;

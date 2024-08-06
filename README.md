@@ -35,6 +35,7 @@ npm run lint
 
 # TODO
 
+- Schwierigkeit tooltip
 - Hardcore: Success animation
 - Hardcore: wrong on solved
 - Lernmodus verbessern

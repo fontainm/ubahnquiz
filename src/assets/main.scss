@@ -39,20 +39,21 @@ button {
 
   &.highlight {
     position: relative;
-    &::after {
-      animation: sheen 3s infinite;
+
+    &:not(:hover)::after {
+      animation: sheen 2s infinite;
       content: '';
       position: absolute;
       top: -20px;
-      left: 0;
+      left: -100px;
       background: linear-gradient(
         to right,
         var(--button-color),
         white,
         var(--button-color),
       );
-      opacity: 0.4;
-      height: 80px;
+      opacity: var(--sheen-opacity);
+      height: 100px;
       width: 80px;
       transform: rotateZ(20deg);
     }
