@@ -10,13 +10,14 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <GameModal :showModal="showModal" @close="closeModal" icon="adjustments-horizontal">
+    <button @click="toggleDark()">
+      <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
+      {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+    </button>
+    <hr />
     <DifficultySettings @reset="handleReset" />
     <hr />
     <div class="buttons">
-      <button @click="toggleDark()">
-        <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
-        {{ isDark ? 'Light Mode' : 'Dark Mode' }}
-      </button>
       <div class="row">
         <button class="button-link">
           <a href="https://github.com/fontainm/ubahnquiz" target="_blank" class="link-button">
@@ -30,7 +31,6 @@ const toggleDark = useToggle(isDark)
         </button>
       </div>
     </div>
-    <hr />
     <DonateInfo />
   </GameModal>
 </template>
