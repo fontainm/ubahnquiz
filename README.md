@@ -35,7 +35,6 @@ npm run lint
 
 # TODO
 
-- Hardcore: Success animation
 - Schwierigkeit tooltip
 - Schwierigkeitseinstellung in Game Over Modal
 
