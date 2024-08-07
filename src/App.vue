@@ -41,7 +41,6 @@ import stations from '@/data/stations.json'
             </div>
 
             <div class="settings">
-              <i class="light-icon-check" @click="mainStore.endGame()"></i>
               <i class="light-icon-adjustments-horizontal" @click="showSettingsModal = true"></i>
             </div>
           </div>
