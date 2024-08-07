@@ -11,6 +11,7 @@ const toggleDark = useToggle(isDark)
 <template>
   <GameModal :showModal="showModal" @close="closeModal" icon="adjustments-horizontal">
     <DifficultySettings @reset="handleReset" />
+    <hr />
     <div class="buttons">
       <button @click="toggleDark()">
         <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
@@ -29,6 +30,7 @@ const toggleDark = useToggle(isDark)
         </button>
       </div>
     </div>
+    <hr />
     <DonateInfo />
   </GameModal>
 </template>

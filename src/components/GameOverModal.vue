@@ -15,7 +15,9 @@ import DifficultySettings from './DifficultySettings.vue'
         <i class="light-icon-share"></i>
         Teilen
       </button>
+      <hr />
       <DifficultySettings :showApply="false" @reset="handleReset" />
+      <hr />
       <DonateInfo />
       <transition name="fade">
         <div v-if="showMessage" class="message">Erfolgreich kopiert!</div>
