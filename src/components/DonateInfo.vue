@@ -4,7 +4,7 @@
       Wenn dir mein Projekt gefällt und du mich unterstützen möchtest, freue ich mich über eine
       Spende via PayPal
     </div>
-    <button class="donate-button">
+    <button class="button-link">
       <a
         href="https://www.paypal.com/donate/?hosted_button_id=9KGFJJ4G3L6ZJ"
         target="_blank"

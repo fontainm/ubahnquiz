@@ -18,12 +18,12 @@ const toggleDark = useToggle(isDark)
         {{ isDark ? 'Light Mode' : 'Dark Mode' }}
       </button>
       <div class="row">
-        <button>
+        <button class="button-link">
           <a href="https://github.com/fontainm/ubahnquiz" target="_blank" class="link-button">
             <i class="light-icon-brand-github"></i>GitHub
           </a>
         </button>
-        <button>
+        <button class="button-link">
           <a href="mailto:hallo@mathiasfontain.at" class="link-button">
             <i class="light-icon-mail"></i>Kontakt
           </a>
