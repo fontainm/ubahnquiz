@@ -1,7 +1,7 @@
 <script setup>
 import GameModal from './GameModal.vue'
+import DifficultySettings from './DifficultySettings.vue'
 import DonateInfo from './DonateInfo.vue'
-import { difficulties } from '../consts/difficulties'
 import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()
@@ -10,65 +10,8 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <GameModal :showModal="showModal" @close="closeModal" icon="adjustments-horizontal">
-    <div class="difficulty">
-      <div class="switch">
-        <input
-          v-model="selectedDifficulty"
-          :value="difficulties.EASY"
-          type="radio"
-          name="difficulty"
-          class="switch-input"
-          id="easy"
-        />
-        <label class="switch-label switch-label-0" for="easy">
-          <div class="label-title">Lernmodus</div>
-        </label>
-        <input
-          v-model="selectedDifficulty"
-          :value="difficulties.STANDARD"
-          type="radio"
-          name="difficulty"
-          class="switch-input"
-          id="normal"
-        />
-        <label class="switch-label switch-label-1" for="normal">
-          <div class="label-title">Standard</div>
-        </label>
-        <input
-          v-model="selectedDifficulty"
-          :value="difficulties.HARD"
-          type="radio"
-          name="difficulty"
-          class="switch-input"
-          id="hard"
-        />
-        <label class="switch-label switch-label-2" for="hard">
-          <div class="label-title">Schwierig</div>
-        </label>
-        <span class="switch-selector"></span>
-      </div>
-      <div class="difficulty-info">
-        {{ selectedDifficulty.name }}: {{ selectedDifficulty?.text }}
-      </div>
-    </div>
+    <DifficultySettings @reset="handleReset" />
     <div class="buttons">
-      <button
-        :class="{ highlight: selectedDifficulty.id !== mainStore.selectedDifficulty.id }"
-        @click="handleClickReset"
-      >
-        <i
-          :class="
-            selectedDifficulty.id === mainStore.selectedDifficulty.id
-              ? 'light-icon-arrow-back'
-              : 'light-icon-device-floppy'
-          "
-        ></i>
-        <span>{{
-          selectedDifficulty.id === mainStore.selectedDifficulty.id
-            ? 'Neustarten'
-            : 'Anwenden und Neustarten'
-        }}</span>
-      </button>
       <button @click="toggleDark()">
         <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
         {{ isDark ? 'Light Mode' : 'Dark Mode' }}
@@ -100,12 +43,6 @@ export default {
     }
   },
 
-  data() {
-    return {
-      selectedDifficulty: difficulties.STANDARD
-    }
-  },
-
   computed: {
     mainStore: () => useMainStore()
   },
@@ -116,22 +53,12 @@ export default {
       this.closeModal()
     },
 
-    handleClickReset() {
-      if (this.mainStore.selectedDifficulty !== this.selectedDifficulty) {
-        this.mainStore.selectedDifficulty = this.selectedDifficulty
-      }
-      this.mainStore.resetGame()
-      this.closeModal()
-    },
-
-    handleClickApply() {
-      this.mainStore.selectedDifficulty = this.selectedDifficulty
+    handleReset() {
       this.mainStore.resetGame()
       this.closeModal()
     },
 
     closeModal() {
-      this.selectedDifficulty = this.mainStore.selectedDifficulty
       this.$emit('close')
     }
   }
@@ -160,79 +87,6 @@ export default {
     &:not(:last-child) {
       margin: 0 8px 0 0;
     }
-  }
-}
-
-.difficulty {
-  margin-bottom: 8px;
-
-  .switch {
-    position: relative;
-    height: 50px;
-    width: 300px;
-    background: var(--button-color);
-    margin-bottom: 8px;
-  }
-
-  .switch-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    float: left;
-    width: 100px;
-    height: 100%;
-    color: var(--text-color);
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    .label-title {
-      font-size: 1rem;
-    }
-
-    .label-info {
-      font-size: 0.75rem;
-    }
-  }
-
-  .switch-input {
-    display: none;
-  }
-
-  .switch-input:checked + .switch-label {
-    color: var(--background-color);
-    transition: 0.15s ease-out;
-    transition-property: color, text-shadow;
-  }
-
-  .switch-input:checked + .switch-label-0 ~ .switch-selector {
-    transform: translateX(0%);
-  }
-  .switch-input:checked + .switch-label-1 ~ .switch-selector {
-    transform: translateX(100%);
-  }
-  .switch-input:checked + .switch-label-2 ~ .switch-selector {
-    transform: translateX(200%);
-  }
-
-  .switch-selector {
-    position: absolute;
-    z-index: 1;
-    top: 0px;
-    left: 0px;
-    display: block;
-    width: 100px;
-    height: 50px;
-    background-color: var(--text-color);
-    transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-  }
-
-  .difficulty-info {
-    font-size: 0.75rem;
-    margin-bottom: 8px;
   }
 }
 </style>

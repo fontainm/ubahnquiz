@@ -35,9 +35,6 @@ npm run lint
 
 # TODO
 
-- Schwierigkeit tooltip
-- Schwierigkeitseinstellung in Game Over Modal
-
 - Health Check
 - local storage
 - E2E Tests

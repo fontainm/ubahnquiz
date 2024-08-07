@@ -1,6 +1,7 @@
 <script setup>
 import GameModal from './GameModal.vue'
 import DonateInfo from './DonateInfo.vue'
+import DifficultySettings from './DifficultySettings.vue'
 </script>
 
 <template>
@@ -10,16 +11,11 @@ import DonateInfo from './DonateInfo.vue'
         <div>Zeit: {{ mainStore.timer.value }}</div>
         <div>Punkte: {{ mainStore.score }}</div>
       </div>
-      <div class="buttons">
-        <button @click="share">
-          <i class="light-icon-share"></i>
-          Teilen
-        </button>
-        <button @click="mainStore.resetGame()">
-          <i class="light-icon-arrow-back"></i>
-          Neustart
-        </button>
-      </div>
+      <button @click="share">
+        <i class="light-icon-share"></i>
+        Teilen
+      </button>
+      <DifficultySettings :showApply="false" @reset="handleReset" />
       <DonateInfo />
       <transition name="fade">
         <div v-if="showMessage" class="message">Erfolgreich kopiert!</div>
@@ -43,6 +39,10 @@ export default {
   },
 
   methods: {
+    handleReset() {
+      this.mainStore.resetGame()
+    },
+
     async share() {
       try {
         await navigator.clipboard.writeText(
