@@ -145,7 +145,7 @@ circle {
     stroke: black;
 
     &.solved {
-      fill: #50c878 !important;
+      fill: var(--success-color) !important;
     }
 
     &.hint {
@@ -154,6 +154,7 @@ circle {
 
     &.correct {
       transform: scale(2);
+      fill: var(--success-color) !important;
     }
 
     &.wrong {

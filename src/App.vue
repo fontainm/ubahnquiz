@@ -231,7 +231,7 @@ export default {
       position: absolute;
       left: 0;
       top: 0;
-      color: #50c878;
+      color: var(--success-color);
       opacity: 0;
 
       &.show {
@@ -262,7 +262,7 @@ export default {
   & > div {
     transition: width 0.3s ease;
     height: 100%;
-    background: #50c878;
+    background: var(--success-color);
   }
 }
 
