@@ -56,6 +56,7 @@ import stations from '@/data/stations.json'
           :stations="mainStore.allStations"
           :showColors="difficultySettings.showLineColor"
           :showSolved="difficultySettings.showSolved"
+          :showInitialHint="difficultySettings.showInitialHint"
           @overStation="setHoveredStation"
           @leaveStation="hoveredStation = null"
           @clickStation="handleClickStation"

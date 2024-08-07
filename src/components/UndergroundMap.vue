@@ -52,7 +52,7 @@
             'station',
             {
               solved: station.solved && showSolved,
-              hint: station.hint,
+              hint: station.hint && !showInitialHint,
               correct: station.correct,
               wrong: station.wrong
             }
@@ -93,6 +93,9 @@ export default {
     },
     showSolved: {
       default: true
+    },
+    showInitialHint: {
+      default: false
     }
   },
 

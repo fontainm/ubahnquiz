@@ -35,9 +35,9 @@ npm run lint
 
 # TODO
 
-- Schwierigkeit tooltip
 - Hardcore: Success animation
-- Lernmodus verbessern
+- Schwierigkeit tooltip
+- Schwierigkeitseinstellung in Game Over Modal
 
 - Health Check
 - local storage
