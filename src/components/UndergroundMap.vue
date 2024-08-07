@@ -120,11 +120,7 @@ export default {
 
   methods: {
     handleClickStation(station, event) {
-      if (station.solved) {
-        this.$emit('overStation', station, event)
-      } else {
-        this.$emit('clickStation', station)
-      }
+      this.$emit('clickStation', station, event)
     }
   }
 }

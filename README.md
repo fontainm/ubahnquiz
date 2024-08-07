@@ -37,7 +37,6 @@ npm run lint
 
 - Schwierigkeit tooltip
 - Hardcore: Success animation
-- Hardcore: wrong on solved
 - Lernmodus verbessern
 
 - Health Check

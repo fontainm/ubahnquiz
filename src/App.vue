@@ -136,10 +136,16 @@ export default {
       }
     },
 
-    handleClickStation(station) {
+    handleClickStation(station, event) {
       if (!this.mainStore.timer.interval) {
         this.mainStore.startTimer()
       }
+
+      if (station.solved && this.difficultySettings.showSolved) {
+        this.setHoveredStation(station, event)
+        return
+      }
+
       if (station.id == this.mainStore.question.id) {
         this.points =
           3 * this.difficultySettings.pointFactor -
