@@ -1,6 +1,6 @@
 export const difficulties = Object.freeze({
   EASY: {
-    id: 'learn',
+    id: 'EASY',
     level: 0,
     name: 'Lernmodus',
     text: 'Perfekt für das erstmalige Lernen',
@@ -15,7 +15,7 @@ export const difficulties = Object.freeze({
     }
   },
   STANDARD: {
-    id: 'standard',
+    id: 'STANDARD',
     level: 1,
     name: 'Standard',
     text: 'Für die erste Herausforderung',
@@ -30,7 +30,7 @@ export const difficulties = Object.freeze({
     }
   },
   HARD: {
-    id: 'hard',
+    id: 'HARD',
     level: 2,
     name: 'Schwierig',
     text: "Ohne Farbhilfe, dafür gibt's doppelte Punkte",

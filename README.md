@@ -35,6 +35,7 @@ npm run lint
 
 # TODO
 
+- Refactor Difficulty Settings: v-for
 - Schwierig: Game Over clickable?
 - Game Over Confetti
 - Health Check

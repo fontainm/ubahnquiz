@@ -4,6 +4,8 @@ import { difficulties } from '@/consts/difficulties'
 
 export const useMainStore = defineStore('main', {
   state: () => {
+    const storedDifficulty =
+      difficulties[localStorage.getItem('difficulty')] ?? difficulties.STANDARD
     return {
       question: null,
       lastQuestion: null,
@@ -15,7 +17,7 @@ export const useMainStore = defineStore('main', {
         start: 0,
         interval: null
       },
-      selectedDifficulty: difficulties.STANDARD,
+      selectedDifficulty: storedDifficulty,
       gameOver: false
     }
   },
@@ -118,6 +120,7 @@ export const useMainStore = defineStore('main', {
 
     resetGame() {
       clearInterval(this.timer.interval)
+      localStorage.setItem('difficulty', this.selectedDifficulty.id)
       this.tries = 0
       this.timer = {
         value: '00:00',

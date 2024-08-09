@@ -99,12 +99,6 @@ export default {
     this.selectedDifficulty = this.mainStore.selectedDifficulty
   },
 
-  watch: {
-    selectedDifficulty() {
-      this.$emit('changeDifficulty', this.selectedDifficulty)
-    }
-  },
-
   methods: {
     handleClickReset() {
       if (this.mainStore.selectedDifficulty !== this.selectedDifficulty) {
