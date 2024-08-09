@@ -35,6 +35,7 @@
           :key="line.id"
           :d="line.d"
           class="line"
+          :class="{ 'no-color': !showColors }"
           fill="none"
           :stroke="line.color"
           stroke-width="40"
@@ -50,16 +51,15 @@
           :class="[
             'station',
             {
-              solved: station.solved,
-              hint: station.hint,
+              solved: station.solved && showSolved,
+              hint: station.hint && !showInitialHint,
               correct: station.correct,
               wrong: station.wrong
-            },
-            station.tries ? `tries-${station.tries}` : ''
+            }
           ]"
           r="22"
           stroke-width="2"
-          @mouseover="$emit('overStation', station, $event)"
+          @mouseover="showSolved ? $emit('overStation', station, $event) : null"
           @mouseleave="$emit('leaveStation')"
           @click="handleClickStation(station, $event)"
           @touchend="handleClickStation(station, $event)"
@@ -87,6 +87,15 @@ export default {
   props: {
     stations: {
       required: true
+    },
+    showColors: {
+      default: true
+    },
+    showSolved: {
+      default: true
+    },
+    showInitialHint: {
+      default: false
     }
   },
 
@@ -114,11 +123,7 @@ export default {
 
   methods: {
     handleClickStation(station, event) {
-      if (station.solved) {
-        this.$emit('overStation', station, event)
-      } else {
-        this.$emit('clickStation', station)
-      }
+      this.$emit('clickStation', station, event)
     }
   }
 }
@@ -140,16 +145,7 @@ circle {
     stroke: black;
 
     &.solved {
-      fill: #50c878 !important;
-    }
-
-    &.tries-1 {
-    }
-
-    &.tries-2 {
-    }
-
-    &.tries-3 {
+      fill: var(--success-color) !important;
     }
 
     &.hint {
@@ -158,6 +154,7 @@ circle {
 
     &.correct {
       transform: scale(2);
+      fill: var(--success-color) !important;
     }
 
     &.wrong {
@@ -179,6 +176,11 @@ circle {
 }
 
 path {
+  &.line {
+    &.no-color {
+      stroke: var(--line-color);
+    }
+  }
   &.water {
     stroke: var(--water-color);
   }

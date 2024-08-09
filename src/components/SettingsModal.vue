@@ -1,5 +1,6 @@
 <script setup>
 import GameModal from './GameModal.vue'
+import DifficultySettings from './DifficultySettings.vue'
 import DonateInfo from './DonateInfo.vue'
 import { useDark, useToggle } from '@vueuse/core'
 
@@ -8,26 +9,29 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <GameModal :showModal="showModal" @close="$emit('close')" icon="adjustments-horizontal">
+  <GameModal :showModal="showModal" @close="closeModal" icon="adjustments-horizontal">
+    <button @click="toggleDark()">
+      <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
+      {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+    </button>
+    <hr />
+    <DifficultySettings @reset="handleReset" />
+    <hr />
     <div class="buttons">
-      <button @click="toggleDark()">
-        <i :class="isDark ? 'light-icon-sun' : 'light-icon-moon'"></i>
-        {{ isDark ? 'Light Mode' : 'Dark Mode' }}
-      </button>
-      <button @click="handleClickReset">
-        <i class="light-icon-arrow-back"></i>
-        Neustart
-      </button>
-      <div class="contact">
-        <a href="https://github.com/fontainm/ubahnquiz" target="_blank">
-          <button><i class="light-icon-brand-github"></i>GitHub</button>
-        </a>
-        <a href="mailto:hallo@mathiasfontain.at">
-          <button><i class="light-icon-mail"></i>Kontakt</button>
-        </a>
+      <div class="row">
+        <button class="button-link">
+          <a href="https://github.com/fontainm/ubahnquiz" target="_blank" class="link-button">
+            <i class="light-icon-brand-github"></i>GitHub
+          </a>
+        </button>
+        <button class="button-link">
+          <a href="mailto:hallo@mathiasfontain.at" class="link-button">
+            <i class="light-icon-mail"></i>Kontakt
+          </a>
+        </button>
       </div>
-      <DonateInfo />
     </div>
+    <DonateInfo />
   </GameModal>
 </template>
 
@@ -51,7 +55,7 @@ export default {
       this.closeModal()
     },
 
-    handleClickReset() {
+    handleReset() {
       this.mainStore.resetGame()
       this.closeModal()
     },
@@ -64,20 +68,26 @@ export default {
 </script>
 
 <style lang="scss">
-.donate {
-  .donate-text {
-    font-size: 0.75rem;
-    padding: 0 0.5rem 0.5rem;
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
   }
 
-  .donate-button {
-    height: 65px;
-    width: 280px;
-    flex-direction: row;
-    margin: 0 0 1rem 0;
+  button {
+    width: 50%;
 
-    i {
-      margin: 0 0.5rem 0 0;
+    &:not(:last-child) {
+      margin: 0 8px 0 0;
     }
   }
 }

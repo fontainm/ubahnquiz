@@ -49,14 +49,14 @@ export default {
     position: relative;
     background: var(--background-color);
     width: 300px;
-    padding: 0.75rem;
+    padding: 16px;
     border: 1px solid var(--button-color);
     text-align: center;
 
     .icon {
       background: var(--background-color);
       border-radius: 50%;
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
