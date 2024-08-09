@@ -35,6 +35,8 @@ npm run lint
 
 # TODO
 
+- Schwierig: Game Over clickable?
+- Game Over Confetti
 - Health Check
 - local storage
 - E2E Tests

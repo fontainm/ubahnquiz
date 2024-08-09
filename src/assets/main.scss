@@ -46,16 +46,19 @@ button {
       position: absolute;
       top: -20px;
       left: -100px;
-      background: linear-gradient(
-        to right,
-        var(--button-color),
-        white,
-        var(--button-color),
-      );
+      background: linear-gradient(to right, var(--button-color), white, var(--button-color));
       opacity: var(--sheen-opacity);
       height: 100px;
       width: 80px;
       transform: rotateZ(20deg);
+    }
+  }
+
+  &.success {
+    background: var(--success-color);
+
+    &:not(:hover)::after {
+      background: linear-gradient(to right, var(--success-color), white, var(--success-color));
     }
   }
 
@@ -101,4 +104,5 @@ h4 {
 
 hr {
   border: 1px solid var(--button-color);
+  margin: 16px 0;
 }
