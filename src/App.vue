@@ -53,7 +53,7 @@ import stations from '@/data/stations.json'
         <UndergroundMap
           :stations="mainStore.allStations"
           :showColors="difficultySettings.showLineColor"
-          :showSolved="difficultySettings.showSolved"
+          :showSolved="difficultySettings.showSolved || !mainStore.question"
           :showInitialHint="difficultySettings.showInitialHint"
           @overStation="setHoveredStation"
           @leaveStation="hoveredStation = null"
@@ -111,9 +111,6 @@ export default {
 
   methods: {
     setHoveredStation(station, event) {
-      if (!this.difficultySettings.showSolved) {
-        return
-      }
       if (!station.solved && !this.difficultySettings.showNames) {
         return
       }
@@ -140,7 +137,7 @@ export default {
         this.mainStore.startTimer()
       }
 
-      if (station.solved && this.difficultySettings.showSolved) {
+      if (station.solved && (this.difficultySettings.showSolved || !this.mainStore.question)) {
         this.setHoveredStation(station, event)
         return
       }
