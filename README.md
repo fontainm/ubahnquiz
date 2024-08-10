@@ -37,6 +37,7 @@ npm run lint
 
 - Refactor Difficulty Settings: v-for
 - Game Over Confetti
+- Fix touchend on scroll
 - Health Check
 - local storage
 - E2E Tests
