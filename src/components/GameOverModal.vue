@@ -8,6 +8,7 @@ import DifficultySettings from './DifficultySettings.vue'
   <div>
     <GameModal :showModal="mainStore.gameOver" @close="mainStore.setGameOver(false)" icon="trophy">
       <div class="stats">
+        <div class="badge">{{ mainStore.selectedDifficulty.name }}</div>
         <div>Zeit: {{ mainStore.timer.value }}</div>
         <div>Punkte: {{ mainStore.score }}</div>
       </div>
@@ -48,7 +49,7 @@ export default {
     async share() {
       try {
         await navigator.clipboard.writeText(
-          `Meine Punkte: ${this.mainStore.score}\nMeine Zeit: ${this.mainStore.timer.value}\nSchaffst du das auch?\nhttps://ubahnquiz.at`
+          `Meine Punkte: ${this.mainStore.score}\nMeine Zeit: ${this.mainStore.timer.value}\n(${this.mainStore.selectedDifficulty.name})\nSchaffst du das auch?\nhttps://ubahnquiz.at`
         )
         this.showMessage = true
         setTimeout(() => {
@@ -69,6 +70,15 @@ export default {
 
   & > div {
     margin-bottom: 8px;
+  }
+
+  .badge {
+    font-size: 1rem;
+    background: var(--success-color);
+    color: var(--background-color);
+    width: auto;
+    display: inline-block;
+    padding: 8px;
   }
 }
 
