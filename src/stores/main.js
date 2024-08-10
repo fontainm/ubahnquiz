@@ -1,18 +1,23 @@
 import { defineStore } from 'pinia'
 import dayjs from 'dayjs'
+import { difficulties } from '@/consts/difficulties'
 
 export const useMainStore = defineStore('main', {
   state: () => {
+    const storedDifficulty =
+      difficulties[localStorage.getItem('difficulty')] ?? difficulties.STANDARD
     return {
       question: null,
       lastQuestion: null,
       stations: [],
       score: 0,
+      tries: 0,
       timer: {
         value: '00:00',
         start: 0,
         interval: null
       },
+      selectedDifficulty: storedDifficulty,
       gameOver: false
     }
   },
@@ -47,14 +52,15 @@ export const useMainStore = defineStore('main', {
       }, 1000)
     },
 
-    setSolved(station, tries) {
+    setSolved(station) {
       const solvedStation = this.stations.findIndex((s) => s.id == station.id)
       let newStations = this.stations
       newStations[solvedStation].solved = true
       newStations[solvedStation].correct = true
-      newStations[solvedStation].tries = tries
+      newStations[solvedStation].tries = this.tries
       newStations[solvedStation].hint = false
       this.setStations(newStations)
+      this.tries = 0
       setTimeout(() => {
         newStations[solvedStation].correct = false
       }, 500)
@@ -74,6 +80,12 @@ export const useMainStore = defineStore('main', {
         newStations[wrongStation].wrong = false
         this.setStations(newStations)
       }, 500)
+      if (this.tries < 3) {
+        this.tries++
+      }
+      if (this.tries === 3) {
+        this.setHint()
+      }
     },
 
     setHint() {
@@ -91,11 +103,14 @@ export const useMainStore = defineStore('main', {
       this.lastQuestion = this.question
       this.question =
         this.unsolvedStations[Math.floor(Math.random() * this.unsolvedStations.length)]
+      if (this.selectedDifficulty.settings.showInitialHint) {
+        this.setHint()
+      }
     },
 
     endGame() {
       this.setGameOver(true)
-      this.question = null;
+      this.question = null
       clearInterval(this.timer.interval)
     },
 
@@ -105,6 +120,8 @@ export const useMainStore = defineStore('main', {
 
     resetGame() {
       clearInterval(this.timer.interval)
+      localStorage.setItem('difficulty', this.selectedDifficulty.id)
+      this.tries = 0
       this.timer = {
         value: '00:00',
         start: 0,

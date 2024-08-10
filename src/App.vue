@@ -17,7 +17,11 @@ import stations from '@/data/stations.json'
 
           <div v-if="mainStore.question" class="question">
             <span class="where">Wo ist</span>
-            <StationName v-if="mainStore.question" :station="mainStore.question" />?
+            <StationName
+              v-if="mainStore.question"
+              :station="mainStore.question"
+              :showLines="difficultySettings.showLines"
+            />?
           </div>
           <i
             v-else
@@ -26,14 +30,12 @@ import stations from '@/data/stations.json'
           ></i>
 
           <div class="header-right">
-            <div class="score">
+            <div v-if="difficultySettings.showScore" class="score">
               <span>
                 {{ mainStore.score }}
               </span>
               <span class="score-text">Punkte</span>
-              <span class="score-points" :class="{ show: pointAnimation }" :style="``">
-                +{{ points }}
-              </span>
+              <span class="score-points" :class="{ show: pointAnimation }">+{{ points }} </span>
             </div>
 
             <div class="settings">
@@ -50,6 +52,9 @@ import stations from '@/data/stations.json'
       <div class="map">
         <UndergroundMap
           :stations="mainStore.allStations"
+          :showColors="difficultySettings.showLineColor"
+          :showSolved="difficultySettings.showSolved || !mainStore.question"
+          :showInitialHint="difficultySettings.showInitialHint"
           @overStation="setHoveredStation"
           @leaveStation="hoveredStation = null"
           @clickStation="handleClickStation"
@@ -57,13 +62,15 @@ import stations from '@/data/stations.json'
       </div>
     </div>
 
-    <div
-      v-show="hoveredStation"
-      class="info"
-      :style="`left: ${mousePosition.x}px; top: ${mousePosition.y}px`"
-    >
-      <StationName :station="hoveredStation" />
-    </div>
+    <transition name="fade" mode="out-in">
+      <div
+        v-if="hoveredStation"
+        class="info"
+        :style="`left: ${mousePosition.x}px; top: ${mousePosition.y}px`"
+      >
+        <StationName :station="hoveredStation" />
+      </div>
+    </transition>
 
     <SettingsModal :showModal="showSettingsModal" @close="showSettingsModal = false" />
 
@@ -85,7 +92,6 @@ export default {
       mousePosition: { x: 0, y: 0 },
       points: 0,
       pointAnimation: false,
-      tries: 0,
       showSettingsModal: false
     }
   },
@@ -96,12 +102,16 @@ export default {
   },
 
   computed: {
-    mainStore: () => useMainStore()
+    mainStore: () => useMainStore(),
+
+    difficultySettings() {
+      return this.mainStore.selectedDifficulty.settings
+    }
   },
 
   methods: {
     setHoveredStation(station, event) {
-      if (!station.solved) {
+      if (!station.solved && !this.difficultySettings.showNames) {
         return
       }
       this.hoveredStation = station
@@ -122,13 +132,21 @@ export default {
       }
     },
 
-    handleClickStation(station) {
+    handleClickStation(station, event) {
       if (!this.mainStore.timer.interval) {
         this.mainStore.startTimer()
       }
+
+      if (station.solved && (this.difficultySettings.showSolved || !this.mainStore.question)) {
+        this.setHoveredStation(station, event)
+        return
+      }
+
       if (station.id == this.mainStore.question.id) {
-        this.mainStore.setSolved(station, this.tries)
-        this.points = 3 - this.tries
+        this.points =
+          3 * this.difficultySettings.pointFactor -
+          this.mainStore.tries * this.difficultySettings.pointFactor
+        this.mainStore.setSolved(station)
         if (this.points > 0) {
           this.mainStore.addScore(this.points)
           this.pointAnimation = true
@@ -136,15 +154,8 @@ export default {
             this.pointAnimation = false
           }, 2000)
         }
-        this.tries = 0
       } else {
         this.mainStore.setWrong(station)
-        if (this.tries < 3) {
-          this.tries++
-        }
-        if (this.tries === 3) {
-          this.mainStore.setHint()
-        }
       }
     }
   }
@@ -170,18 +181,18 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 16px;
   font-size: 2rem;
   background: var(--background-color);
 
   .question {
     display: flex;
     align-items: center;
-    max-height: 2rem;
+    max-height: 32px;
     white-space: nowrap;
 
     .where {
-      margin-right: 0.5rem;
+      margin-right: 8px;
     }
 
     .trophy {
@@ -207,7 +218,7 @@ export default {
 
     .score-text {
       font-size: 1rem;
-      margin-left: 0.5rem;
+      margin-left: 8px;
     }
 
     .score-points {
@@ -215,7 +226,7 @@ export default {
       position: absolute;
       left: 0;
       top: 0;
-      color: #50c878;
+      color: var(--success-color);
       opacity: 0;
 
       &.show {
@@ -226,12 +237,12 @@ export default {
 
   .settings {
     display: flex;
-    margin-left: 1rem;
+    margin-left: 16px;
   }
 
   i {
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 
     &:hover {
       color: #999;
@@ -246,7 +257,7 @@ export default {
   & > div {
     transition: width 0.3s ease;
     height: 100%;
-    background: #50c878;
+    background: var(--success-color);
   }
 }
 
@@ -259,8 +270,8 @@ export default {
   position: absolute;
   font-size: 1.5rem;
   display: flex;
-  margin-left: 1rem;
-  padding-right: 0.5rem;
+  margin-left: 16px;
+  padding-right: 8px;
   align-items: center;
   white-space: nowrap;
   background: var(--background-color);
@@ -279,29 +290,29 @@ export default {
     .header-right {
       font-size: 1.25rem;
       position: absolute;
-      top: 5rem;
+      top: 80px;
     }
 
     .settings {
-      right: 1rem;
+      right: 16px;
       font-size: 1.5rem;
     }
 
     .header-right {
-      right: 1rem;
+      right: 16px;
 
       .score-text {
-        margin-left: 0.25rem;
+        margin-left: 8px;
         font-size: 1.25rem;
       }
 
       .score-points {
-        left: 5px;
+        left: 8px;
       }
     }
 
     .timer {
-      left: 1rem;
+      left: 16px;
     }
   }
 }

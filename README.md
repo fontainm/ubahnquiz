@@ -35,6 +35,8 @@ npm run lint
 
 # TODO
 
+- Refactor Difficulty Settings: v-for
+- Game Over Confetti
 - Health Check
 - local storage
 - E2E Tests
@@ -42,11 +44,6 @@ npm run lint
 # Feature Requests
 
 - Ranking
-- Spielmodi
-  - Keine Linieninfo
-  - Keine Linienfarben
-  - Station bleibt weiß nach solved
-  - S-Bahn-Stationen
-  - Straßenbahn-Linien
-  - Bus-Linien
-
+- S-Bahn-Stationen
+- Straßenbahn-Linien
+- Bus-Linien

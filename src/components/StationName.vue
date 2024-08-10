@@ -1,6 +1,6 @@
 <template>
   <div v-if="station" class="stationname">
-    <div class="lines">
+    <div v-if="showLines" class="lines">
       <img v-for="line in station.lines" :key="line" :src="`img/${line}.svg`" class="line" />
     </div>
     <span class="name" translate="no">
@@ -14,6 +14,9 @@ export default {
   props: {
     station: {
       required: true
+    },
+    showLines: {
+      default: true
     }
   }
 }
@@ -25,16 +28,13 @@ export default {
   align-items: center;
 
   .lines {
-    margin-right: 0.5rem;
-    height: 2rem;
+    margin-right: 8px;
+    height: 32px;
     white-space: nowrap;
   }
 
   .line {
     height: inherit;
-  }
-
-  .name {
   }
 }
 </style>

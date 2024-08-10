@@ -1,26 +1,25 @@
 <script setup>
 import GameModal from './GameModal.vue'
 import DonateInfo from './DonateInfo.vue'
+import DifficultySettings from './DifficultySettings.vue'
 </script>
 
 <template>
   <div>
     <GameModal :showModal="mainStore.gameOver" @close="mainStore.setGameOver(false)" icon="trophy">
       <div class="stats">
+        <div class="badge">{{ mainStore.selectedDifficulty.name }}</div>
         <div>Zeit: {{ mainStore.timer.value }}</div>
         <div>Punkte: {{ mainStore.score }}</div>
       </div>
-      <div class="buttons">
-        <button @click="share">
-          <i class="light-icon-share"></i>
-          Teilen
-        </button>
-        <button @click="mainStore.resetGame()">
-          <i class="light-icon-arrow-back"></i>
-          Neustart
-        </button>
-        <DonateInfo />
-      </div>
+      <button @click="share">
+        <i class="light-icon-share"></i>
+        Teilen
+      </button>
+      <hr />
+      <DifficultySettings :showApply="false" @reset="handleReset" />
+      <hr />
+      <DonateInfo />
       <transition name="fade">
         <div v-if="showMessage" class="message">Erfolgreich kopiert!</div>
       </transition>
@@ -43,10 +42,14 @@ export default {
   },
 
   methods: {
+    handleReset() {
+      this.mainStore.resetGame()
+    },
+
     async share() {
       try {
         await navigator.clipboard.writeText(
-          `Meine Punkte: ${this.mainStore.score}\nMeine Zeit: ${this.mainStore.timer.value}\nSchaffst du das auch?\nhttps://ubahnquiz.at`
+          `Meine Punkte: ${this.mainStore.score}\nMeine Zeit: ${this.mainStore.timer.value}\n(${this.mainStore.selectedDifficulty.name})\nSchaffst du das auch?\nhttps://ubahnquiz.at`
         )
         this.showMessage = true
         setTimeout(() => {
@@ -63,10 +66,19 @@ export default {
 <style scoped lang="scss">
 .stats {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 
   & > div {
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
+  }
+
+  .badge {
+    font-size: 1rem;
+    background: var(--success-color);
+    color: var(--background-color);
+    width: auto;
+    display: inline-block;
+    padding: 8px;
   }
 }
 
@@ -74,9 +86,9 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -4rem;
+  bottom: -64px;
   background: #333;
   color: white;
-  padding: 1rem;
+  padding: 16px;
 }
 </style>
