@@ -54,7 +54,7 @@ import { difficulties } from '../consts/difficulties'
     </div>
     <button
       :class="{
-        highlight: selectedDifficulty.id !== mainStore.selectedDifficulty.id || !showApply,
+        highlight: selectedDifficulty.id !== mainStore.selectedDifficulty.id && showApply,
         success: selectedDifficulty.id !== mainStore.selectedDifficulty.id && showApply
       }"
       @click="handleClickReset"
