@@ -99,6 +99,7 @@ export default {
   mounted() {
     this.mainStore.setStations(stations)
     this.mainStore.newQuestion()
+    this.mainStore.confetti = this.$confetti
   },
 
   computed: {
