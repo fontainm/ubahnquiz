@@ -52,6 +52,9 @@ export default {
     padding: 16px;
     border: 1px solid var(--button-color);
     text-align: center;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .icon {
       background: var(--background-color);
