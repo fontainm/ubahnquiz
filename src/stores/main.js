@@ -6,6 +6,7 @@ export const useMainStore = defineStore('main', {
   state: () => {
     const storedDifficulty =
       difficulties[localStorage.getItem('difficulty')] ?? difficulties.STANDARD
+
     return {
       question: null,
       lastQuestion: null,
@@ -18,7 +19,8 @@ export const useMainStore = defineStore('main', {
         interval: null
       },
       selectedDifficulty: storedDifficulty,
-      gameOver: false
+      gameOver: false,
+      confetti: null
     }
   },
 
@@ -111,10 +113,16 @@ export const useMainStore = defineStore('main', {
     endGame() {
       this.setGameOver(true)
       this.question = null
+      this.confetti.start({
+        defaultColors: ['#f60019', '#a163a9', '#fc7f20', '#00a16b', '#9c693a']
+      })
       clearInterval(this.timer.interval)
     },
 
     setGameOver(gameOver) {
+      if (!gameOver && !this.confetti.killed) {
+        this.confetti.stop()
+      }
       this.gameOver = gameOver
     },
 

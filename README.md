@@ -35,7 +35,6 @@ npm run lint
 
 # TODO
 
-- Game Over Confetti
 - Fix touchend on scroll
 - Health Check
 - local storage
