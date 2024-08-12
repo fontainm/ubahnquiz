@@ -35,7 +35,6 @@ npm run lint
 
 # TODO
 
-- Refactor Difficulty Settings: v-for
 - Game Over Confetti
 - Fix touchend on scroll
 - Health Check
