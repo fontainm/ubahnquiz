@@ -3,6 +3,7 @@ import UndergroundMap from '@/components/UndergroundMap.vue'
 import StationName from '@/components/StationName.vue'
 import GameOverModal from '@/components/GameOverModal.vue'
 import SettingsModal from '@/components/SettingsModal.vue'
+import DonateBanner from '@/components/DonateBanner.vue'
 import stations from '@/data/stations.json'
 </script>
 
@@ -61,6 +62,8 @@ import stations from '@/data/stations.json'
         />
       </div>
     </div>
+
+    <DonateBanner />
 
     <transition name="fade" mode="out-in">
       <div
