@@ -31,6 +31,7 @@ const toggleDark = useToggle(isDark)
         </button>
       </div>
     </div>
+    <hr />
     <DonateInfo />
   </GameModal>
 </template>
