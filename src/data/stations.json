@@ -79,8 +79,8 @@
   { "id": 59, "name": "Simmering", "cx": "1521.55", "cy": "1449.74", "lines": ["U3"] },
   { "id": 60, "name": "Seestadt", "cx": "2271.35", "cy": "747.595", "lines": ["U2"] },
   { "id": 61, "name": "Aspern Nord", "cx": "2231.56", "cy": "623.456", "lines": ["U2"] },
-  { "id": 62, "name": "Hausfeldstraße", "cx": "2129.6", "cy": "638.674", "lines": ["U2"] },
-  { "id": 63, "name": "Aspernstraße", "cx": "2076.44", "cy": "691.83", "lines": ["U2"] },
+  { "id": 62, "name": "Hausfeldstraße", "cx": "2139.6", "cy": "628.674", "lines": ["U2"] },
+  { "id": 63, "name": "Aspernstraße", "cx": "2066.44", "cy": "701.83", "lines": ["U2"] },
   { "id": 64, "name": "Donauspital", "cx": "2003.75", "cy": "747.337", "lines": ["U2"] },
   { "id": 65, "name": "Hardeggasse", "cx": "1925.79", "cy": "747.337", "lines": ["U2"] },
   { "id": 66, "name": "Stadlau", "cx": "1854.85", "cy": "791.121", "lines": ["U2"] },
@@ -120,5 +120,6 @@
   { "id": 94, "name": "Altes Landgut", "cx": "1082.42", "cy": "1706.93", "lines": ["U1"] },
   { "id": 95, "name": "Alaudagasse", "cx": "1124.04", "cy": "1748.55", "lines": ["U1"] },
   { "id": 96, "name": "Neulaa", "cx": "1165.51", "cy": "1790.01", "lines": ["U1"] },
-  { "id": 97, "name": "Oberlaa", "cx": "1213.97", "cy": "1838.48", "lines": ["U1"] }
+  { "id": 97, "name": "Oberlaa", "cx": "1213.97", "cy": "1838.48", "lines": ["U1"] },
+  { "id": 98, "name": "Lina-Loos-Platz", "cx": "2103.02", "cy": "665.252", "lines": ["U2"] }
 ]
